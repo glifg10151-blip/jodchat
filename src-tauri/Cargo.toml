@@ -37,7 +37,7 @@ thiserror = "2"
 urlencoding = "2"
 log = "0.4.33"
 keyring-core = "1"
-rmcp = { version = "2", features = ["client", "transport-child-process", "client-side-sse", "transport-streamable-http-client-reqwest"] }
+rmcp = { version = "3", features = ["client", "transport-child-process", "client-side-sse", "transport-streamable-http-client-reqwest"] }
 which = "8.0.4"
 window-vibrancy = "0.6.0"
 base64 = "0.22"
