@@ -1,0 +1,33 @@
+{
+  "id": "twilio",
+  "name": "Twilio SMS & WhatsApp",
+  "category": "communication",
+  "description": "Send SMS notifications and WhatsApp messages programmatically.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "TWILIO_ACCOUNT_SID",
+      "label": "Twilio Account SID",
+      "placeholder": "AC...",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "TWILIO_AUTH_TOKEN",
+      "label": "Twilio Auth Token",
+      "placeholder": "Token...",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "twilio",
+    "name": "Twilio SMS & WhatsApp",
+    "description": "Send SMS alerts and messaging via Twilio API.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-twilio"],
+    "envKeys": ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"]
+  },
+  "keywords": ["twilio", "sms", "whatsapp", "text", "phone", "messages", "notifications"]
+}

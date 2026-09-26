@@ -1,0 +1,31 @@
+{
+  "id": "tavily",
+  "name": "Tavily AI Search",
+  "category": "featured",
+  "description": "Real-time AI-optimized web search tailored for LLM factual accuracy.",
+  "longDescription": "Next-generation search engine optimized specifically for LLMs. Gathers comprehensive, real-time facts with full URL citations without ad clutter.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "TAVILY_API_KEY",
+      "label": "Tavily API Key",
+      "placeholder": "tvly-...",
+      "type": "password",
+      "required": true,
+      "helpText": "Free API tier available at tavily.com.",
+      "docUrl": "https://tavily.com"
+    }
+  ],
+  "preset": {
+    "id": "tavily",
+    "name": "Tavily AI Search",
+    "description": "AI-native web search engine delivering synthesized context and citations.",
+    "homepageUrl": "https://github.com/tavily-ai/tavily-mcp",
+    "command": "npx",
+    "args": ["-y", "@tavily/mcp-server"],
+    "envKeys": ["TAVILY_API_KEY"]
+  },
+  "keywords": ["tavily", "search", "web", "research", "realtime", "citations", "google"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "asana",
+  "name": "Asana",
+  "category": "productivity",
+  "description": "Track project milestones, view team tasks, and update goals.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "ASANA_ACCESS_TOKEN",
+      "label": "Asana Personal Access Token",
+      "placeholder": "0/...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://app.asana.com/0/my-apps"
+    }
+  ],
+  "preset": {
+    "id": "asana",
+    "name": "Asana",
+    "description": "Manage project tasks and milestones on Asana.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-asana"],
+    "envKeys": ["ASANA_ACCESS_TOKEN"]
+  },
+  "keywords": ["asana", "tasks", "projects", "milestones", "team", "tracking"]
+}

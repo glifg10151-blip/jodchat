@@ -1,0 +1,40 @@
+{
+  "id": "aws",
+  "name": "AWS & S3 Storage",
+  "category": "developer",
+  "description": "List S3 buckets, inspect objects, and query cloud resources.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "AWS_ACCESS_KEY_ID",
+      "label": "AWS Access Key ID",
+      "placeholder": "AKIA...",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "AWS_SECRET_ACCESS_KEY",
+      "label": "AWS Secret Access Key",
+      "placeholder": "Secret key...",
+      "type": "password",
+      "required": true
+    },
+    {
+      "key": "AWS_REGION",
+      "label": "AWS Region",
+      "placeholder": "us-east-1",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "aws",
+    "name": "AWS & S3 Storage",
+    "description": "Interact with AWS S3 buckets and cloud services.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-aws"],
+    "envKeys": ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"]
+  },
+  "keywords": ["aws", "s3", "amazon", "cloud", "buckets", "storage", "dynamodb"]
+}

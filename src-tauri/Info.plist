@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Sythoria requires microphone access when you choose to record voice input for transcription.</string>
+    <key>NSScreenCaptureUsageDescription</key>
+    <string>Sythoria requires screen recording permission to take screenshots of the application for Appshots.</string>
+</dict>
+</plist>

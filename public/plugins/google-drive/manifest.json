@@ -1,0 +1,31 @@
+{
+  "id": "google-drive",
+  "name": "Google Drive",
+  "category": "featured",
+  "description": "Work across Drive, Docs, Sheets, and Slides",
+  "longDescription": "Searches your personal or workspace Google Drive to read document text, extract spreadsheet data, and reference presentation outlines.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "GOOGLE_APPLICATION_CREDENTIALS",
+      "label": "Google Service Account Credentials (Path or JSON)",
+      "placeholder": "/path/to/credentials.json",
+      "type": "text",
+      "required": true,
+      "helpText": "Google Cloud Service Account key JSON file path or inline JSON.",
+      "docUrl": "https://console.cloud.google.com/apis/credentials"
+    }
+  ],
+  "preset": {
+    "id": "google-drive",
+    "name": "Google Drive & Docs",
+    "description": "Read, search, and parse Google Drive documents and spreadsheets.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-gdrive"],
+    "envKeys": ["GOOGLE_APPLICATION_CREDENTIALS"]
+  },
+  "keywords": ["google drive", "gdrive", "docs", "sheets", "slides", "files", "cloud storage"]
+}

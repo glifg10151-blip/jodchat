@@ -1,0 +1,42 @@
+{
+  "id": "jira-confluence",
+  "name": "Jira & Confluence (Atlassian)",
+  "category": "productivity",
+  "description": "Search enterprise wikis, update Jira tickets, and log bug status.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "ATLASSIAN_API_TOKEN",
+      "label": "Atlassian API Token",
+      "placeholder": "Token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://id.atlassian.com/manage-profile/security/api-tokens"
+    },
+    {
+      "key": "ATLASSIAN_EMAIL",
+      "label": "Atlassian Account Email",
+      "placeholder": "user@company.com",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ATLASSIAN_DOMAIN",
+      "label": "Atlassian Domain Name",
+      "placeholder": "yourcompany.atlassian.net",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "jira-confluence",
+    "name": "Atlassian Jira & Confluence",
+    "description": "Manage Jira issues and search Confluence documentation.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-atlassian"],
+    "envKeys": ["ATLASSIAN_API_TOKEN", "ATLASSIAN_EMAIL", "ATLASSIAN_DOMAIN"]
+  },
+  "keywords": ["jira", "confluence", "atlassian", "tickets", "wiki", "sprints", "backlog"]
+}

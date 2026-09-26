@@ -1,0 +1,31 @@
+{
+  "id": "github",
+  "name": "GitHub",
+  "category": "featured",
+  "description": "Triage PRs, manage issues, search repositories, and inspect code.",
+  "longDescription": "Gives your AI full access to read and inspect GitHub repositories, search code across files, create or update issues, review pull requests, and trigger CI workflows.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "label": "GitHub Personal Access Token",
+      "placeholder": "ghp_...",
+      "type": "password",
+      "required": true,
+      "helpText": "Needs 'repo' scope for private repositories or public repo access.",
+      "docUrl": "https://github.com/settings/tokens"
+    }
+  ],
+  "preset": {
+    "id": "github",
+    "name": "GitHub",
+    "description": "Repositories, issues, PRs, and code inspection via GitHub API.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/github",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"],
+    "envKeys": ["GITHUB_PERSONAL_ACCESS_TOKEN"]
+  },
+  "keywords": ["github", "git", "repo", "pull request", "issue", "pr", "commit", "ci", "code"]
+}

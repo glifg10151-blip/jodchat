@@ -1,0 +1,19 @@
+{
+  "id": "fetch",
+  "name": "Fetch Web URLs",
+  "category": "search",
+  "description": "Fast HTTP page reader converting raw web pages into clean text.",
+  "icon": "./icon.svg",
+  "badge": "Essential",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "fetch",
+    "name": "Fetch Web URLs",
+    "description": "Fetch and extract clean text from public web URLs.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+    "command": "uvx",
+    "args": ["mcp-server-fetch"]
+  },
+  "keywords": ["fetch", "url", "http", "curl", "webpage", "html", "reader"]
+}

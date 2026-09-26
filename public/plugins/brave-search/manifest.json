@@ -1,0 +1,29 @@
+{
+  "id": "brave-search",
+  "name": "Brave Search",
+  "category": "search",
+  "description": "Independent web search engine with zero tracking and local POI lookups.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "BRAVE_API_KEY",
+      "label": "Brave Search API Key",
+      "placeholder": "BSA...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://brave.com/search/api/"
+    }
+  ],
+  "preset": {
+    "id": "brave-search",
+    "name": "Brave Search",
+    "description": "Web and local search via the Brave Search API.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+    "envKeys": ["BRAVE_API_KEY"]
+  },
+  "keywords": ["brave", "search", "privacy", "web", "lookup", "google alternative"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "todoist",
+  "name": "Todoist",
+  "category": "productivity",
+  "description": "Create tasks, check upcoming deadlines, and organize project tasks.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "TODOIST_API_TOKEN",
+      "label": "Todoist API Token",
+      "placeholder": "Token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://todoist.com/app/settings/integrations/developer"
+    }
+  ],
+  "preset": {
+    "id": "todoist",
+    "name": "Todoist",
+    "description": "Task and project management with Todoist.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-todoist"],
+    "envKeys": ["TODOIST_API_TOKEN"]
+  },
+  "keywords": ["todoist", "tasks", "todo", "deadlines", "reminders", "projects"]
+}

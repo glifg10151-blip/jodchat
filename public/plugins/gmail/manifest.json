@@ -1,0 +1,28 @@
+{
+  "id": "gmail",
+  "name": "Gmail",
+  "category": "communication",
+  "description": "Search email threads, summarize inbox newsletters, and draft message replies.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "GMAIL_CREDENTIALS_PATH",
+      "label": "Google OAuth Credentials Path",
+      "placeholder": "C:/path/to/credentials.json",
+      "type": "text",
+      "required": true,
+      "docUrl": "https://console.cloud.google.com/apis/credentials"
+    }
+  ],
+  "preset": {
+    "id": "gmail",
+    "name": "Gmail",
+    "description": "Search, summarize, and draft emails with Gmail API.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-gmail"],
+    "envKeys": ["GMAIL_CREDENTIALS_PATH"]
+  },
+  "keywords": ["gmail", "email", "mail", "inbox", "threads", "draft", "google"]
+}

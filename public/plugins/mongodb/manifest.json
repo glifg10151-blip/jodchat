@@ -1,0 +1,26 @@
+{
+  "id": "mongodb",
+  "name": "MongoDB",
+  "category": "developer",
+  "description": "Query document collections, filter JSON data, and inspect schemas.",
+  "icon": "./icon.svg",
+  "authType": "connection_string",
+  "authFields": [
+    {
+      "key": "MONGODB_URI",
+      "label": "MongoDB Connection URI",
+      "placeholder": "mongodb://localhost:27017/my_database",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "description": "Search and query collections in MongoDB databases.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-mongodb"],
+    "envKeys": ["MONGODB_URI"]
+  },
+  "keywords": ["mongodb", "nosql", "documents", "json", "mongo", "database"]
+}

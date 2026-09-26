@@ -1,0 +1,27 @@
+{
+  "id": "apify",
+  "name": "Apify Web Scrapers",
+  "category": "search",
+  "description": "Run ready-made scrapers for e-commerce, Google Maps, Instagram, and more.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "APIFY_TOKEN",
+      "label": "Apify API Token",
+      "placeholder": "apify_api_...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://console.apify.com/account#/integrations"
+    }
+  ],
+  "preset": {
+    "id": "apify",
+    "name": "Apify Scrapers",
+    "description": "Execute web actors and scrapers via the Apify platform.",
+    "command": "npx",
+    "args": ["-y", "apify-mcp-server"],
+    "envKeys": ["APIFY_TOKEN"]
+  },
+  "keywords": ["apify", "scraper", "crawling", "ecommerce", "actors", "data extraction"]
+}

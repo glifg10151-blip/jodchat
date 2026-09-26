@@ -1,0 +1,20 @@
+{
+  "id": "playwright",
+  "name": "Web Browser Automation",
+  "category": "featured",
+  "description": "Headless browser automation to navigate, interact with web apps, and take screenshots.",
+  "longDescription": "Automates a Chromium browser to browse live web pages, interact with JavaScript applications, fill out forms, and capture screenshots for UI analysis.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "playwright",
+    "name": "Web Browser Automation",
+    "description": "Automate browser interactions and UI testing using Puppeteer.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+  },
+  "keywords": ["browser", "puppeteer", "playwright", "web", "automation", "navigate", "scrape", "screenshot"]
+}

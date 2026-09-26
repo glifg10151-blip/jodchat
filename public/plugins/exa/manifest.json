@@ -1,0 +1,29 @@
+{
+  "id": "exa",
+  "name": "Exa (Metaphor) Neural Search",
+  "category": "search",
+  "description": "Semantic neural search tailored for code, technical blogs, and deep research.",
+  "longDescription": "Uses meaning-based semantic vector search over the web to find deeply technical articles, repositories, and niche academic resources.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "EXA_API_KEY",
+      "label": "Exa API Key",
+      "placeholder": "API Key...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://exa.ai"
+    }
+  ],
+  "preset": {
+    "id": "exa",
+    "name": "Exa Neural Search",
+    "description": "Semantic web search designed for AI agents and research.",
+    "command": "npx",
+    "args": ["-y", "exa-mcp-server"],
+    "envKeys": ["EXA_API_KEY"]
+  },
+  "keywords": ["exa", "metaphor", "neural search", "semantic", "research", "papers", "articles"]
+}

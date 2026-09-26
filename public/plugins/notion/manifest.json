@@ -1,0 +1,31 @@
+{
+  "id": "notion",
+  "name": "Notion",
+  "category": "featured",
+  "description": "Search workspace pages, read project specs, and create new notes.",
+  "longDescription": "Connects to your Notion workspace to search across your databases, read specifications and design docs, and draft new pages or summaries.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "NOTION_API_KEY",
+      "label": "Notion Integration Secret Token",
+      "placeholder": "secret_...",
+      "type": "password",
+      "required": true,
+      "helpText": "Create an Internal Integration in Notion and share your target pages with it.",
+      "docUrl": "https://www.notion.so/my-integrations"
+    }
+  ],
+  "preset": {
+    "id": "notion",
+    "name": "Notion",
+    "description": "Search, query, and edit Notion workspace pages and databases.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/notion",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-notion"],
+    "envKeys": ["NOTION_API_KEY"]
+  },
+  "keywords": ["notion", "docs", "notes", "wiki", "specs", "database", "knowledge"]
+}

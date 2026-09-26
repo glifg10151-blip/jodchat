@@ -1,0 +1,27 @@
+{
+  "id": "discord",
+  "name": "Discord",
+  "category": "communication",
+  "description": "Send channel messages, monitor server discussions, and post notifications.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "DISCORD_BOT_TOKEN",
+      "label": "Discord Bot Token",
+      "placeholder": "Bot token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://discord.com/developers/applications"
+    }
+  ],
+  "preset": {
+    "id": "discord",
+    "name": "Discord",
+    "description": "Send messages and monitor channels on Discord servers.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-discord"],
+    "envKeys": ["DISCORD_BOT_TOKEN"]
+  },
+  "keywords": ["discord", "chat", "bot", "channel", "community", "messages"]
+}

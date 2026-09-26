@@ -1,0 +1,28 @@
+{
+  "id": "zapier",
+  "name": "Zapier & Webhooks",
+  "category": "media",
+  "description": "Universal webhook bridge triggering actions in 5,000+ third-party apps.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "ZAPIER_NLA_API_KEY",
+      "label": "Zapier NLA API Key",
+      "placeholder": "sk_ak_...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://nla.zapier.com/credentials/"
+    }
+  ],
+  "preset": {
+    "id": "zapier",
+    "name": "Zapier & Webhooks",
+    "description": "Trigger workflows and actions across 5,000+ apps via Zapier.",
+    "command": "npx",
+    "args": ["-y", "zapier-mcp"],
+    "envKeys": ["ZAPIER_NLA_API_KEY"]
+  },
+  "keywords": ["zapier", "make", "webhooks", "automation", "integrations", "workflows"]
+}

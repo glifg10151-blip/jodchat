@@ -1,0 +1,28 @@
+{
+  "id": "google-calendar",
+  "name": "Google Calendar",
+  "category": "productivity",
+  "description": "Check schedule availability, view meetings, and create calendar events.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "GOOGLE_CALENDAR_CREDENTIALS",
+      "label": "Google Calendar Credentials JSON / Path",
+      "placeholder": "/path/to/credentials.json",
+      "type": "text",
+      "required": true,
+      "docUrl": "https://console.cloud.google.com/apis/credentials"
+    }
+  ],
+  "preset": {
+    "id": "google-calendar",
+    "name": "Google Calendar",
+    "description": "Manage events and check schedule availability on Google Calendar.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-google-calendar"],
+    "envKeys": ["GOOGLE_CALENDAR_CREDENTIALS"]
+  },
+  "keywords": ["google calendar", "calendar", "events", "meetings", "schedule", "availability"]
+}

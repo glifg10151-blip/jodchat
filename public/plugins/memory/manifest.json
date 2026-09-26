@@ -1,0 +1,20 @@
+{
+  "id": "memory",
+  "name": "Memory Knowledge Graph",
+  "category": "featured",
+  "description": "Persistent cross-conversation memory graph storing entities and relations.",
+  "longDescription": "Gives your AI long-term structured memory across all conversation sessions using an embedded SQLite knowledge graph.",
+  "icon": "./icon.svg",
+  "badge": "Essential",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "memory",
+    "name": "Memory Knowledge Graph",
+    "description": "Persistent key/value and knowledge graph memory across conversations.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-memory"]
+  },
+  "keywords": ["memory", "graph", "knowledge", "persistent", "recall", "entities", "relations"]
+}

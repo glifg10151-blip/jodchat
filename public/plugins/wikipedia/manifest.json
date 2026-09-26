@@ -1,0 +1,17 @@
+{
+  "id": "wikipedia",
+  "name": "Wikipedia Knowledge",
+  "category": "search",
+  "description": "Search and fetch verified encyclopedic articles and biographical context.",
+  "icon": "./icon.svg",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "wikipedia",
+    "name": "Wikipedia Knowledge",
+    "description": "Fetch articles and summaries from Wikipedia.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-wikipedia"]
+  },
+  "keywords": ["wikipedia", "encyclopedia", "facts", "history", "knowledge", "reference"]
+}

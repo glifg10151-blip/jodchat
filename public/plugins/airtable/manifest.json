@@ -1,0 +1,27 @@
+{
+  "id": "airtable",
+  "name": "Airtable",
+  "category": "productivity",
+  "description": "Read relational bases, insert customer rows, and query table views.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "AIRTABLE_API_KEY",
+      "label": "Airtable Personal Access Token",
+      "placeholder": "pat...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://airtable.com/create/tokens"
+    }
+  ],
+  "preset": {
+    "id": "airtable",
+    "name": "Airtable",
+    "description": "Interact with Airtable bases and records.",
+    "command": "npx",
+    "args": ["-y", "airtable-mcp"],
+    "envKeys": ["AIRTABLE_API_KEY"]
+  },
+  "keywords": ["airtable", "spreadsheet", "database", "no-code", "records", "crm"]
+}

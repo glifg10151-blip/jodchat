@@ -1,0 +1,27 @@
+{
+  "id": "cloudflare",
+  "name": "Cloudflare",
+  "category": "developer",
+  "description": "Manage Cloudflare Workers, KV storage, DNS records, and AI models.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "CLOUDFLARE_API_TOKEN",
+      "label": "Cloudflare API Token",
+      "placeholder": "Bearer token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://dash.cloudflare.com/profile/api-tokens"
+    }
+  ],
+  "preset": {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "description": "Manage Workers, KV, and DNS via Cloudflare API.",
+    "command": "npx",
+    "args": ["-y", "@cloudflare/mcp-server-cloudflare"],
+    "envKeys": ["CLOUDFLARE_API_TOKEN"]
+  },
+  "keywords": ["cloudflare", "workers", "kv", "dns", "cdn", "edge", "serverless"]
+}

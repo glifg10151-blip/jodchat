@@ -1,0 +1,26 @@
+{
+  "id": "obsidian",
+  "name": "Obsidian Markdown Vault",
+  "category": "productivity",
+  "description": "Read, search, and link personal Markdown notes inside your Obsidian vault.",
+  "icon": "./icon.svg",
+  "authType": "none",
+  "authFields": [
+    {
+      "key": "OBSIDIAN_VAULT_PATH",
+      "label": "Obsidian Vault Directory Path",
+      "placeholder": "C:/Users/username/Documents/ObsidianVault",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "obsidian",
+    "name": "Obsidian Vault",
+    "description": "Search and navigate local Obsidian markdown notes.",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "<OBSIDIAN_VAULT_PATH>"],
+    "envKeys": ["OBSIDIAN_VAULT_PATH"]
+  },
+  "keywords": ["obsidian", "markdown", "vault", "notes", "pkm", "second brain"]
+}

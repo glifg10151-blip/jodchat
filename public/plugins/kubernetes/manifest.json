@@ -1,0 +1,17 @@
+{
+  "id": "kubernetes",
+  "name": "Kubernetes (K8s)",
+  "category": "developer",
+  "description": "Inspect cluster pods, check deployment statuses, and read pod logs.",
+  "icon": "./icon.svg",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "kubernetes",
+    "name": "Kubernetes (K8s)",
+    "description": "Interact with local and remote Kubernetes clusters via kubectl.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-kubernetes"]
+  },
+  "keywords": ["kubernetes", "k8s", "pods", "deployments", "cluster", "devops", "cloud"]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "postgres",
+  "name": "PostgreSQL & Supabase",
+  "category": "featured",
+  "description": "Inspect schemas, explore tables, and execute analytical SQL queries.",
+  "longDescription": "Direct database bridge to inspect table structures, analyze indexes, and run safe read-only SQL queries against any PostgreSQL or Supabase instance.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "connection_string",
+  "authFields": [
+    {
+      "key": "DATABASE_URL",
+      "label": "PostgreSQL Connection String",
+      "placeholder": "postgresql://user:password@localhost:5432/dbname",
+      "type": "password",
+      "required": true,
+      "helpText": "Standard postgres connection URI with host, port, user, and database."
+    }
+  ],
+  "preset": {
+    "id": "postgres",
+    "name": "PostgreSQL Database",
+    "description": "Query PostgreSQL databases and inspect schema definitions.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "<DATABASE_URL>"],
+    "envKeys": ["DATABASE_URL"]
+  },
+  "keywords": ["postgres", "postgresql", "supabase", "sql", "database", "tables", "query", "rdbms"]
+}

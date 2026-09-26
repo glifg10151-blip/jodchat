@@ -1,0 +1,31 @@
+{
+  "id": "firecrawl",
+  "name": "Firecrawl Web Scraper",
+  "category": "featured",
+  "description": "Crawl and convert any complex website into clean, LLM-ready Markdown.",
+  "longDescription": "Extracts clean markdown from any URL, handling JavaScript rendering, anti-bot mechanisms, pagination, and multi-page sitemaps.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "FIRECRAWL_API_KEY",
+      "label": "Firecrawl API Key",
+      "placeholder": "fc-...",
+      "type": "password",
+      "required": true,
+      "helpText": "Get your API key at firecrawl.dev.",
+      "docUrl": "https://firecrawl.dev"
+    }
+  ],
+  "preset": {
+    "id": "firecrawl",
+    "name": "Firecrawl Web Scraper",
+    "description": "Extract clean markdown and structure from any webpage or domain.",
+    "homepageUrl": "https://github.com/mendableai/firecrawl-mcp-server",
+    "command": "npx",
+    "args": ["-y", "@mendable/firecrawl-mcp-server"],
+    "envKeys": ["FIRECRAWL_API_KEY"]
+  },
+  "keywords": ["firecrawl", "scraper", "markdown", "crawl", "extract", "web", "html", "reader"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "fireflies",
+  "name": "Fireflies & Granola Meetings",
+  "category": "media",
+  "description": "Search meeting transcripts, AI summaries, and action item logs.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "FIREFLIES_API_KEY",
+      "label": "Fireflies API Key",
+      "placeholder": "API Key...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://app.fireflies.ai/integrations/api"
+    }
+  ],
+  "preset": {
+    "id": "fireflies",
+    "name": "Fireflies Meeting Transcripts",
+    "description": "Search meeting recordings and action items from Fireflies.ai.",
+    "command": "npx",
+    "args": ["-y", "fireflies-mcp"],
+    "envKeys": ["FIREFLIES_API_KEY"]
+  },
+  "keywords": ["fireflies", "granola", "meetings", "transcripts", "zoom", "meet", "audio"]
+}

@@ -1,0 +1,1565 @@
+import type { McpServerConfig } from "../types";
+import type { McpServerPreset } from "./mcpPresets";
+
+export type PluginCategory = "featured" | "developer" | "productivity" | "communication" | "search" | "media";
+
+export interface PluginAuthField {
+  key: string;
+  label: string;
+  placeholder: string;
+  type?: "text" | "password";
+  required?: boolean;
+  helpText?: string;
+  docUrl?: string;
+}
+
+export interface PluginItem {
+  id: string;
+  name: string;
+  category: PluginCategory;
+  description: string;
+  longDescription?: string;
+  icon: string;
+  iconName: string;
+  badge?: "Popular" | "Official" | "New" | "Essential";
+  authType: "none" | "api_key" | "oauth" | "connection_string";
+  authFields: PluginAuthField[];
+  preset: McpServerPreset;
+  keywords: string[];
+}
+
+export const PLUGIN_CATEGORIES: { id: PluginCategory; labelKey: string; icon: string }[] = [
+  { id: "featured", labelKey: "settings.plugins.categoryFeatured", icon: "Sparkles" },
+  { id: "developer", labelKey: "settings.plugins.categoryDeveloper", icon: "Code" },
+  { id: "productivity", labelKey: "settings.plugins.categoryProductivity", icon: "CheckSquare" },
+  { id: "communication", labelKey: "settings.plugins.categoryCommunication", icon: "MessageSquare" },
+  { id: "search", labelKey: "settings.plugins.categorySearch", icon: "Search" },
+  { id: "media", labelKey: "settings.plugins.categoryMedia", icon: "Layers" },
+];
+
+export const PLUGINS_CATALOG: PluginItem[] = [
+  // ==========================================
+  // 1. FEATURED (Top 10 Daily Drivers)
+  // ==========================================
+  {
+    id: "github",
+    name: "GitHub",
+    icon: "/plugins/github/icon.svg",
+    category: "featured",
+    badge: "Official",
+    description: "Triage PRs, manage issues, search repositories, and inspect code.",
+    longDescription:
+      "Gives your AI full access to read and inspect GitHub repositories, search code across files, create or update issues, review pull requests, and trigger CI workflows.",
+    iconName: "Github",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "GITHUB_PERSONAL_ACCESS_TOKEN",
+        label: "GitHub Personal Access Token",
+        placeholder: "ghp_...",
+        type: "password",
+        required: true,
+        helpText: "Needs 'repo' scope for private repositories or public repo access.",
+        docUrl: "https://github.com/settings/tokens",
+      },
+    ],
+    preset: {
+      id: "github",
+      name: "GitHub",
+      description: "Repositories, issues, PRs, and code inspection via GitHub API.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/github",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-github"],
+      envKeys: ["GITHUB_PERSONAL_ACCESS_TOKEN"],
+    },
+    keywords: ["github", "git", "repo", "pull request", "issue", "pr", "commit", "ci", "code"],
+  },
+  {
+    id: "playwright",
+    name: "Web Browser Automation",
+    icon: "/plugins/playwright/icon.svg",
+    category: "featured",
+    badge: "Popular",
+    description: "Headless browser automation to navigate, interact with web apps, and take screenshots.",
+    longDescription:
+      "Automates a Chromium browser to browse live web pages, interact with JavaScript applications, fill out forms, and capture screenshots for UI analysis.",
+    iconName: "Globe",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "playwright",
+      name: "Web Browser Automation",
+      description: "Automate browser interactions and UI testing using Puppeteer.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-puppeteer"],
+    },
+    keywords: ["browser", "puppeteer", "playwright", "web", "automation", "navigate", "scrape", "screenshot"],
+  },
+  {
+    id: "notion",
+    name: "Notion",
+    icon: "/plugins/notion/icon.svg",
+    category: "featured",
+    badge: "Popular",
+    description: "Search workspace pages, read project specs, and create new notes.",
+    longDescription:
+      "Connects to your Notion workspace to search across your databases, read specifications and design docs, and draft new pages or summaries.",
+    iconName: "BookOpen",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "NOTION_API_KEY",
+        label: "Notion Integration Secret Token",
+        placeholder: "secret_...",
+        type: "password",
+        required: true,
+        helpText: "Create an Internal Integration in Notion and share your target pages with it.",
+        docUrl: "https://www.notion.so/my-integrations",
+      },
+    ],
+    preset: {
+      id: "notion",
+      name: "Notion",
+      description: "Search, query, and edit Notion workspace pages and databases.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/notion",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-notion"],
+      envKeys: ["NOTION_API_KEY"],
+    },
+    keywords: ["notion", "docs", "notes", "wiki", "specs", "database", "knowledge"],
+  },
+  {
+    id: "slack",
+    name: "Slack",
+    icon: "/plugins/slack/icon.svg",
+    category: "featured",
+    badge: "Official",
+    description: "Read channel messages, summarize discussions, and post replies.",
+    longDescription:
+      "Allows the AI to search conversation history in public and private channels, extract key takeaways from team threads, and compose draft messages.",
+    iconName: "MessageSquare",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "SLACK_BOT_TOKEN",
+        label: "Slack Bot User OAuth Token",
+        placeholder: "xoxb-...",
+        type: "password",
+        required: true,
+        helpText: "Requires channels:history, channels:read, and chat:write scopes.",
+        docUrl: "https://api.slack.com/apps",
+      },
+      {
+        key: "SLACK_TEAM_ID",
+        label: "Slack Team / Workspace ID",
+        placeholder: "T0123456789",
+        type: "text",
+        required: true,
+        helpText: "Found in your Slack workspace URL or profile details.",
+      },
+    ],
+    preset: {
+      id: "slack",
+      name: "Slack",
+      description: "Channel search, thread summaries, and message sending via Slack API.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/slack",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-slack"],
+      envKeys: ["SLACK_BOT_TOKEN", "SLACK_TEAM_ID"],
+    },
+    keywords: ["slack", "chat", "messages", "team", "communication", "channel", "discussion"],
+  },
+  {
+    id: "linear",
+    name: "Linear",
+    icon: "/plugins/linear/icon.svg",
+    category: "featured",
+    badge: "Official",
+    description: "Search issues, triage bug reports, create tickets, and manage sprints.",
+    longDescription:
+      "Direct integration with Linear to plan projects, create bug reports, find issues by team or cycle, and update issue states automatically.",
+    iconName: "Trello",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "LINEAR_API_KEY",
+        label: "Linear Personal API Key",
+        placeholder: "lin_api_...",
+        type: "password",
+        required: true,
+        helpText: "Generate an API Key under Linear Settings → Account → Security & API Keys.",
+        docUrl: "https://linear.app/settings/api",
+      },
+    ],
+    preset: {
+      id: "linear",
+      name: "Linear",
+      description: "Linear issue tracker integration for software planning.",
+      homepageUrl: "https://github.com/jerhadf/linear-mcp-server",
+      command: "npx",
+      args: ["-y", "linear-mcp-server"],
+      envKeys: ["LINEAR_API_KEY"],
+    },
+    keywords: ["linear", "issues", "tickets", "bugs", "sprints", "project", "kanban"],
+  },
+  {
+    id: "google-drive",
+    name: "Google Drive",
+    icon: "/plugins/google-drive/icon.svg",
+    category: "featured",
+    badge: "Popular",
+    description: "Work across Drive, Docs, Sheets, and Slides",
+    longDescription:
+      "Searches your personal or workspace Google Drive to read document text, extract spreadsheet data, and reference presentation outlines.",
+    iconName: "googledrive",
+    authType: "oauth",
+    authFields: [
+      {
+        key: "GOOGLE_CLIENT_SECRET",
+        label: "Google Desktop app client secret",
+        placeholder: "GOCSPX-...",
+        type: "password",
+        required: false,
+        helpText: "Client Secret from your Google Cloud Console OAuth 2.0 Client.",
+        docUrl: "https://console.cloud.google.com/apis/credentials",
+      },
+    ],
+    preset: {
+      id: "google-drive",
+      name: "Google Drive & Docs",
+      description: "Read, search, and parse Google Drive documents and spreadsheets.",
+      homepageUrl: "https://github.com/piotr-agier/google-drive-mcp",
+      command: "npx",
+      args: ["-y", "@piotr-agier/google-drive-mcp@2.11.0"],
+      envKeys: ["SYTHORIA_GOOGLE_OAUTH_GRANT", "SYTHORIA_GOOGLE_OAUTH_KIND"],
+    },
+    keywords: ["google drive", "gdrive", "docs", "sheets", "slides", "files", "cloud storage"],
+  },
+  {
+    id: "postgres",
+    name: "PostgreSQL & Supabase",
+    icon: "/plugins/postgres/icon.svg",
+    category: "featured",
+    badge: "Popular",
+    description: "Inspect schemas, explore tables, and execute analytical SQL queries.",
+    longDescription:
+      "Direct database bridge to inspect table structures, analyze indexes, and run safe read-only SQL queries against any PostgreSQL or Supabase instance.",
+    iconName: "Database",
+    authType: "connection_string",
+    authFields: [
+      {
+        key: "DATABASE_URL",
+        label: "PostgreSQL Connection String",
+        placeholder: "postgresql://user:password@localhost:5432/dbname",
+        type: "password",
+        required: true,
+        helpText: "Standard postgres connection URI with host, port, user, and database.",
+      },
+    ],
+    preset: {
+      id: "postgres",
+      name: "PostgreSQL Database",
+      description: "Query PostgreSQL databases and inspect schema definitions.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-postgres", "<DATABASE_URL>"],
+      envKeys: ["DATABASE_URL"],
+    },
+    keywords: ["postgres", "postgresql", "supabase", "sql", "database", "tables", "query", "rdbms"],
+  },
+  {
+    id: "memory",
+    name: "Memory Knowledge Graph",
+    icon: "/plugins/memory/icon.svg",
+    category: "featured",
+    badge: "Essential",
+    description: "Persistent cross-conversation memory graph storing entities and relations.",
+    longDescription:
+      "Gives your AI long-term structured memory across all conversation sessions using an embedded SQLite knowledge graph.",
+    iconName: "Cpu",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "memory",
+      name: "Memory Knowledge Graph",
+      description: "Persistent key/value and knowledge graph memory across conversations.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-memory"],
+    },
+    keywords: ["memory", "graph", "knowledge", "persistent", "recall", "entities", "relations"],
+  },
+  {
+    id: "tavily",
+    name: "Tavily AI Search",
+    icon: "/plugins/tavily/icon.svg",
+    category: "featured",
+    badge: "Official",
+    description: "Real-time AI-optimized web search tailored for LLM factual accuracy.",
+    longDescription:
+      "Next-generation search engine optimized specifically for LLMs. Gathers comprehensive, real-time facts with full URL citations without ad clutter.",
+    iconName: "Search",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TAVILY_API_KEY",
+        label: "Tavily API Key",
+        placeholder: "tvly-...",
+        type: "password",
+        required: true,
+        helpText: "Free API tier available at tavily.com.",
+        docUrl: "https://tavily.com",
+      },
+    ],
+    preset: {
+      id: "tavily",
+      name: "Tavily AI Search",
+      description: "AI-native web search engine delivering synthesized context and citations.",
+      homepageUrl: "https://github.com/tavily-ai/tavily-mcp",
+      command: "npx",
+      args: ["-y", "@tavily/mcp-server"],
+      envKeys: ["TAVILY_API_KEY"],
+    },
+    keywords: ["tavily", "search", "web", "research", "realtime", "citations", "google"],
+  },
+  {
+    id: "firecrawl",
+    name: "Firecrawl Web Scraper",
+    icon: "/plugins/firecrawl/icon.svg",
+    category: "featured",
+    badge: "Official",
+    description: "Crawl and convert any complex website into clean, LLM-ready Markdown.",
+    longDescription:
+      "Extracts clean markdown from any URL, handling JavaScript rendering, anti-bot mechanisms, pagination, and multi-page sitemaps.",
+    iconName: "FileText",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "FIRECRAWL_API_KEY",
+        label: "Firecrawl API Key",
+        placeholder: "fc-...",
+        type: "password",
+        required: true,
+        helpText: "Get your API key at firecrawl.dev.",
+        docUrl: "https://firecrawl.dev",
+      },
+    ],
+    preset: {
+      id: "firecrawl",
+      name: "Firecrawl Web Scraper",
+      description: "Extract clean markdown and structure from any webpage or domain.",
+      homepageUrl: "https://github.com/mendableai/firecrawl-mcp-server",
+      command: "npx",
+      args: ["-y", "@mendable/firecrawl-mcp-server"],
+      envKeys: ["FIRECRAWL_API_KEY"],
+    },
+    keywords: ["firecrawl", "scraper", "markdown", "crawl", "extract", "web", "html", "reader"],
+  },
+
+  // ==========================================
+  // 2. DEVELOPER & DEVOPS (11–20)
+  // ==========================================
+  {
+    id: "docker",
+    name: "Docker Container Manager",
+    icon: "/plugins/docker/icon.svg",
+    category: "developer",
+    badge: "Popular",
+    description: "Inspect local containers, view runtime logs, and manage Docker services.",
+    longDescription:
+      "Allows the assistant to list running containers, fetch live container logs, inspect images, and check service health on your local Docker daemon.",
+    iconName: "Layers",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "docker",
+      name: "Docker Container Manager",
+      description: "Manage local Docker containers, images, volumes, and logs.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers",
+      command: "npx",
+      args: ["-y", "mcp-server-docker"],
+    },
+    keywords: ["docker", "containers", "devops", "logs", "compose", "images", "daemon"],
+  },
+  {
+    id: "gitlab",
+    name: "GitLab",
+    icon: "/plugins/gitlab/icon.svg",
+    category: "developer",
+    badge: "Official",
+    description: "Manage merge requests, repositories, issues, and pipelines on GitLab.",
+    longDescription:
+      "Deep integration for GitLab.com and self-hosted GitLab instances to review merge requests, search code, and monitor CI/CD pipelines.",
+    iconName: "GitBranch",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "GITLAB_PERSONAL_ACCESS_TOKEN",
+        label: "GitLab Personal Access Token",
+        placeholder: "glpat-...",
+        type: "password",
+        required: true,
+        docUrl: "https://gitlab.com/-/user_settings/personal_access_tokens",
+      },
+      {
+        key: "GITLAB_API_URL",
+        label: "GitLab Instance URL (Optional)",
+        placeholder: "https://gitlab.com/api/v4",
+        type: "text",
+        helpText: "Defaults to gitlab.com. Set this if using a self-hosted instance.",
+      },
+    ],
+    preset: {
+      id: "gitlab",
+      name: "GitLab",
+      description: "Interact with GitLab projects, merge requests, issues, and CI pipelines.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-gitlab"],
+      envKeys: ["GITLAB_PERSONAL_ACCESS_TOKEN"],
+    },
+    keywords: ["gitlab", "git", "mr", "merge request", "ci", "pipelines", "repo"],
+  },
+  {
+    id: "sentry",
+    name: "Sentry Error Monitoring",
+    icon: "/plugins/sentry/icon.svg",
+    category: "developer",
+    badge: "Official",
+    description: "Pull stack traces, triage unhandled exceptions, and link errors to code.",
+    longDescription:
+      "Retrieves real-time application crashes and stack traces from Sentry so the AI can diagnose bugs and suggest immediate code fixes.",
+    iconName: "Shield",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "SENTRY_AUTH_TOKEN",
+        label: "Sentry User Auth Token",
+        placeholder: "sntrys_...",
+        type: "password",
+        required: true,
+        helpText: "Requires project:read and issue:read scopes.",
+        docUrl: "https://sentry.io/settings/account/api/auth-tokens/",
+      },
+    ],
+    preset: {
+      id: "sentry",
+      name: "Sentry",
+      description: "Analyze error logs, trace exceptions, and debug crashes with Sentry.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-sentry"],
+      envKeys: ["SENTRY_AUTH_TOKEN"],
+    },
+    keywords: ["sentry", "errors", "exceptions", "stacktrace", "bugs", "monitoring", "crash"],
+  },
+  {
+    id: "sqlite",
+    name: "SQLite Database Inspector",
+    icon: "/plugins/sqlite/icon.svg",
+    category: "developer",
+    badge: "Essential",
+    description: "Query and inspect local SQLite databases with automated schema analysis.",
+    longDescription:
+      "Allows the assistant to safely inspect local SQLite database files, run read-only analytical queries, and examine indexes and table schemas.",
+    iconName: "Database",
+    authType: "none",
+    authFields: [
+      {
+        key: "SQLITE_DB_PATH",
+        label: "SQLite Database File Path",
+        placeholder: "C:/path/to/database.db",
+        type: "text",
+        required: true,
+        helpText: "Absolute path to your .sqlite or .db file.",
+      },
+    ],
+    preset: {
+      id: "sqlite",
+      name: "SQLite Database Inspector",
+      description: "Inspect schema and query tables in a local SQLite file.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+      command: "uvx",
+      args: ["mcp-server-sqlite", "--db-path", "<SQLITE_DB_PATH>"],
+      envKeys: ["SQLITE_DB_PATH"],
+    },
+    keywords: ["sqlite", "sql", "db", "database", "local", "query", "tables"],
+  },
+  {
+    id: "redis",
+    name: "Redis",
+    icon: "/plugins/redis/icon.svg",
+    category: "developer",
+    description: "Inspect cached keys, view TTLs, and test key-value structures.",
+    iconName: "Zap",
+    authType: "connection_string",
+    authFields: [
+      {
+        key: "REDIS_URL",
+        label: "Redis Connection URL",
+        placeholder: "redis://localhost:6379",
+        type: "password",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "redis",
+      name: "Redis Cache & DB",
+      description: "Connect to Redis instances to query keys and data types.",
+      command: "npx",
+      args: ["-y", "mcp-server-redis"],
+      envKeys: ["REDIS_URL"],
+    },
+    keywords: ["redis", "cache", "key-value", "memory", "ttl", "pubsub"],
+  },
+  {
+    id: "mongodb",
+    name: "MongoDB",
+    icon: "/plugins/mongodb/icon.svg",
+    category: "developer",
+    description: "Query document collections, filter JSON data, and inspect schemas.",
+    iconName: "Database",
+    authType: "connection_string",
+    authFields: [
+      {
+        key: "MONGODB_URI",
+        label: "MongoDB Connection URI",
+        placeholder: "mongodb://localhost:27017/my_database",
+        type: "password",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "mongodb",
+      name: "MongoDB",
+      description: "Search and query collections in MongoDB databases.",
+      command: "npx",
+      args: ["-y", "mcp-server-mongodb"],
+      envKeys: ["MONGODB_URI"],
+    },
+    keywords: ["mongodb", "nosql", "documents", "json", "mongo", "database"],
+  },
+  {
+    id: "kubernetes",
+    name: "Kubernetes (K8s)",
+    icon: "/plugins/kubernetes/icon.svg",
+    category: "developer",
+    description: "Inspect cluster pods, check deployment statuses, and read pod logs.",
+    iconName: "Boxes",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "kubernetes",
+      name: "Kubernetes (K8s)",
+      description: "Interact with local and remote Kubernetes clusters via kubectl.",
+      command: "npx",
+      args: ["-y", "mcp-server-kubernetes"],
+    },
+    keywords: ["kubernetes", "k8s", "pods", "deployments", "cluster", "devops", "cloud"],
+  },
+  {
+    id: "cloudflare",
+    name: "Cloudflare",
+    icon: "/plugins/cloudflare/icon.svg",
+    category: "developer",
+    description: "Manage Cloudflare Workers, KV storage, DNS records, and AI models.",
+    iconName: "Cloud",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "CLOUDFLARE_API_TOKEN",
+        label: "Cloudflare API Token",
+        placeholder: "Bearer token...",
+        type: "password",
+        required: true,
+        docUrl: "https://dash.cloudflare.com/profile/api-tokens",
+      },
+    ],
+    preset: {
+      id: "cloudflare",
+      name: "Cloudflare",
+      description: "Manage Workers, KV, and DNS via Cloudflare API.",
+      command: "npx",
+      args: ["-y", "@cloudflare/mcp-server-cloudflare"],
+      envKeys: ["CLOUDFLARE_API_TOKEN"],
+    },
+    keywords: ["cloudflare", "workers", "kv", "dns", "cdn", "edge", "serverless"],
+  },
+  {
+    id: "aws",
+    name: "AWS & S3 Storage",
+    icon: "/plugins/aws/icon.svg",
+    category: "developer",
+    description: "List S3 buckets, inspect objects, and query cloud resources.",
+    iconName: "Cloud",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "AWS_ACCESS_KEY_ID",
+        label: "AWS Access Key ID",
+        placeholder: "AKIA...",
+        type: "password",
+        required: true,
+      },
+      {
+        key: "AWS_SECRET_ACCESS_KEY",
+        label: "AWS Secret Access Key",
+        placeholder: "Secret key...",
+        type: "password",
+        required: true,
+      },
+      {
+        key: "AWS_REGION",
+        label: "AWS Region",
+        placeholder: "us-east-1",
+        type: "text",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "aws",
+      name: "AWS & S3 Storage",
+      description: "Interact with AWS S3 buckets and cloud services.",
+      command: "npx",
+      args: ["-y", "mcp-server-aws"],
+      envKeys: ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"],
+    },
+    keywords: ["aws", "s3", "amazon", "cloud", "buckets", "storage", "dynamodb"],
+  },
+  {
+    id: "filesystem",
+    name: "Local Filesystem",
+    icon: "/plugins/filesystem/icon.svg",
+    category: "developer",
+    badge: "Essential",
+    description: "Read, write, search, and inspect files and folders on your computer.",
+    iconName: "Folder",
+    authType: "none",
+    authFields: [
+      {
+        key: "ALLOWED_DIR",
+        label: "Allowed Root Directory",
+        placeholder: "C:/Users/YourName/Projects",
+        type: "text",
+        required: true,
+        helpText: "Directory path the assistant is permitted to access.",
+      },
+    ],
+    preset: {
+      id: "filesystem",
+      name: "Local Filesystem",
+      description: "Direct local file access with directory sandboxing.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "<ALLOWED_DIR>"],
+      envKeys: ["ALLOWED_DIR"],
+    },
+    keywords: ["filesystem", "files", "local", "directory", "read", "write", "folders"],
+  },
+
+  // ==========================================
+  // 3. PRODUCTIVITY & WORKSPACES (21–30)
+  // ==========================================
+  {
+    id: "jira-confluence",
+    name: "Jira & Confluence (Atlassian)",
+    icon: "/plugins/jira-confluence/icon.svg",
+    category: "productivity",
+    badge: "Official",
+    description: "Search enterprise wikis, update Jira tickets, and log bug status.",
+    iconName: "Trello",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "ATLASSIAN_API_TOKEN",
+        label: "Atlassian API Token",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+        docUrl: "https://id.atlassian.com/manage-profile/security/api-tokens",
+      },
+      {
+        key: "ATLASSIAN_EMAIL",
+        label: "Atlassian Account Email",
+        placeholder: "user@company.com",
+        type: "text",
+        required: true,
+      },
+      {
+        key: "ATLASSIAN_DOMAIN",
+        label: "Atlassian Domain Name",
+        placeholder: "yourcompany.atlassian.net",
+        type: "text",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "jira-confluence",
+      name: "Atlassian Jira & Confluence",
+      description: "Manage Jira issues and search Confluence documentation.",
+      command: "npx",
+      args: ["-y", "mcp-server-atlassian"],
+      envKeys: ["ATLASSIAN_API_TOKEN", "ATLASSIAN_EMAIL", "ATLASSIAN_DOMAIN"],
+    },
+    keywords: ["jira", "confluence", "atlassian", "tickets", "wiki", "sprints", "backlog"],
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian Markdown Vault",
+    icon: "/plugins/obsidian/icon.svg",
+    category: "productivity",
+    description: "Read, search, and link personal Markdown notes inside your Obsidian vault.",
+    iconName: "BookOpen",
+    authType: "none",
+    authFields: [
+      {
+        key: "OBSIDIAN_VAULT_PATH",
+        label: "Obsidian Vault Directory Path",
+        placeholder: "C:/Users/username/Documents/ObsidianVault",
+        type: "text",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "obsidian",
+      name: "Obsidian Vault",
+      description: "Search and navigate local Obsidian markdown notes.",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "<OBSIDIAN_VAULT_PATH>"],
+      envKeys: ["OBSIDIAN_VAULT_PATH"],
+    },
+    keywords: ["obsidian", "markdown", "vault", "notes", "pkm", "second brain"],
+  },
+  {
+    id: "todoist",
+    name: "Todoist",
+    icon: "/plugins/todoist/icon.svg",
+    category: "productivity",
+    description: "Create tasks, check upcoming deadlines, and organize project tasks.",
+    iconName: "CheckSquare",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TODOIST_API_TOKEN",
+        label: "Todoist API Token",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+        docUrl: "https://todoist.com/app/settings/integrations/developer",
+      },
+    ],
+    preset: {
+      id: "todoist",
+      name: "Todoist",
+      description: "Task and project management with Todoist.",
+      command: "npx",
+      args: ["-y", "mcp-server-todoist"],
+      envKeys: ["TODOIST_API_TOKEN"],
+    },
+    keywords: ["todoist", "tasks", "todo", "deadlines", "reminders", "projects"],
+  },
+  {
+    id: "trello",
+    name: "Trello",
+    icon: "/plugins/trello/icon.svg",
+    category: "productivity",
+    description: "Move cards across kanban boards, create task cards, and assign members.",
+    iconName: "Trello",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TRELLO_API_KEY",
+        label: "Trello API Key",
+        placeholder: "Key...",
+        type: "password",
+        required: true,
+        docUrl: "https://trello.com/app-key",
+      },
+      {
+        key: "TRELLO_TOKEN",
+        label: "Trello User Token",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "trello",
+      name: "Trello",
+      description: "Manage boards, lists, and cards on Trello.",
+      command: "npx",
+      args: ["-y", "trello-mcp"],
+      envKeys: ["TRELLO_API_KEY", "TRELLO_TOKEN"],
+    },
+    keywords: ["trello", "kanban", "cards", "boards", "tasks", "productivity"],
+  },
+  {
+    id: "asana",
+    name: "Asana",
+    icon: "/plugins/asana/icon.svg",
+    category: "productivity",
+    description: "Track project milestones, view team tasks, and update goals.",
+    iconName: "CheckSquare",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "ASANA_ACCESS_TOKEN",
+        label: "Asana Personal Access Token",
+        placeholder: "0/...",
+        type: "password",
+        required: true,
+        docUrl: "https://app.asana.com/0/my-apps",
+      },
+    ],
+    preset: {
+      id: "asana",
+      name: "Asana",
+      description: "Manage project tasks and milestones on Asana.",
+      command: "npx",
+      args: ["-y", "mcp-server-asana"],
+      envKeys: ["ASANA_ACCESS_TOKEN"],
+    },
+    keywords: ["asana", "tasks", "projects", "milestones", "team", "tracking"],
+  },
+  {
+    id: "airtable",
+    name: "Airtable",
+    icon: "/plugins/airtable/icon.svg",
+    category: "productivity",
+    description: "Read relational bases, insert customer rows, and query table views.",
+    iconName: "Database",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "AIRTABLE_API_KEY",
+        label: "Airtable Personal Access Token",
+        placeholder: "pat...",
+        type: "password",
+        required: true,
+        docUrl: "https://airtable.com/create/tokens",
+      },
+    ],
+    preset: {
+      id: "airtable",
+      name: "Airtable",
+      description: "Interact with Airtable bases and records.",
+      command: "npx",
+      args: ["-y", "airtable-mcp"],
+      envKeys: ["AIRTABLE_API_KEY"],
+    },
+    keywords: ["airtable", "spreadsheet", "database", "no-code", "records", "crm"],
+  },
+  {
+    id: "clickup",
+    name: "ClickUp",
+    icon: "/plugins/clickup/icon.svg",
+    category: "productivity",
+    description: "Manage all-in-one workspace tasks, docs, goals, and team backlogs.",
+    iconName: "CheckSquare",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "CLICKUP_API_TOKEN",
+        label: "ClickUp Personal API Token",
+        placeholder: "pk_...",
+        type: "password",
+        required: true,
+        docUrl: "https://app.clickup.com/settings/apps",
+      },
+    ],
+    preset: {
+      id: "clickup",
+      name: "ClickUp",
+      description: "Manage tasks, spaces, and workflows on ClickUp.",
+      command: "npx",
+      args: ["-y", "clickup-mcp"],
+      envKeys: ["CLICKUP_API_TOKEN"],
+    },
+    keywords: ["clickup", "tasks", "projects", "docs", "workspace", "sprints"],
+  },
+  {
+    id: "coda",
+    name: "Coda",
+    icon: "/plugins/coda/icon.svg",
+    category: "productivity",
+    description: "Read interactive docs, query tables, and append row data in Coda.",
+    iconName: "FileText",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "CODA_API_KEY",
+        label: "Coda API Key",
+        placeholder: "API Token...",
+        type: "password",
+        required: true,
+        docUrl: "https://coda.io/account",
+      },
+    ],
+    preset: {
+      id: "coda",
+      name: "Coda",
+      description: "Interact with Coda docs, tables, and formulas.",
+      command: "npx",
+      args: ["-y", "coda-mcp"],
+      envKeys: ["CODA_API_KEY"],
+    },
+    keywords: ["coda", "docs", "interactive", "tables", "formulas", "workspace"],
+  },
+  {
+    id: "hubspot",
+    name: "HubSpot CRM",
+    icon: "/plugins/hubspot/icon.svg",
+    category: "productivity",
+    description: "Search contact records, log call notes, and view deals in your sales pipeline.",
+    iconName: "Users",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "HUBSPOT_ACCESS_TOKEN",
+        label: "HubSpot Private App Access Token",
+        placeholder: "pat-...",
+        type: "password",
+        required: true,
+        docUrl: "https://app.hubspot.com/settings/integrations/private-apps",
+      },
+    ],
+    preset: {
+      id: "hubspot",
+      name: "HubSpot CRM",
+      description: "Manage CRM contacts, companies, deals, and sales activities.",
+      command: "npx",
+      args: ["-y", "hubspot-mcp"],
+      envKeys: ["HUBSPOT_ACCESS_TOKEN"],
+    },
+    keywords: ["hubspot", "crm", "sales", "deals", "contacts", "pipeline", "leads"],
+  },
+  {
+    id: "google-calendar",
+    name: "Google Calendar",
+    icon: "/plugins/google-calendar/icon.svg",
+    category: "productivity",
+    badge: "Popular",
+    description: "View calendar events; optionally allow creating, editing, and deleting events.",
+    iconName: "Calendar",
+    authType: "oauth",
+    authFields: [
+      {
+        key: "GOOGLE_CLIENT_SECRET",
+        label: "Google Desktop app client secret",
+        placeholder: "GOCSPX-...",
+        type: "password",
+        required: false,
+        helpText: "Client Secret from your Google Cloud Console OAuth 2.0 Client.",
+        docUrl: "https://console.cloud.google.com/apis/credentials",
+      },
+    ],
+    preset: {
+      id: "google-calendar",
+      name: "Google Calendar",
+      description: "Manage events and check schedule availability on Google Calendar.",
+      command: "npx",
+      args: ["-y", "@piotr-agier/google-drive-mcp@2.11.0"],
+      envKeys: ["SYTHORIA_GOOGLE_OAUTH_GRANT", "SYTHORIA_GOOGLE_OAUTH_KIND"],
+    },
+    keywords: ["google calendar", "calendar", "events", "meetings", "schedule", "availability"],
+  },
+
+  // ==========================================
+  // 4. COMMUNICATION & EMAIL (31–36)
+  // ==========================================
+  {
+    id: "gmail",
+    name: "Gmail",
+    icon: "/plugins/gmail/icon.svg",
+    category: "communication",
+    badge: "Popular",
+    description: "Read and search email; optionally allow drafting and sending replies.",
+    iconName: "Mail",
+    authType: "oauth",
+    authFields: [
+      {
+        key: "GOOGLE_CLIENT_SECRET",
+        label: "Google Desktop app client secret",
+        placeholder: "GOCSPX-...",
+        type: "password",
+        required: false,
+        helpText: "Client Secret from your Google Cloud Console OAuth 2.0 Client.",
+        docUrl: "https://console.cloud.google.com/apis/credentials",
+      },
+    ],
+    preset: {
+      id: "gmail",
+      name: "Gmail",
+      description: "Search, summarize, and draft emails with Gmail API.",
+      command: "npx",
+      args: ["-y", "@gongrzhe/server-gmail-autoauth-mcp@1.1.11"],
+      envKeys: ["SYTHORIA_GOOGLE_OAUTH_GRANT", "SYTHORIA_GOOGLE_OAUTH_KIND"],
+    },
+    keywords: ["gmail", "email", "mail", "inbox", "threads", "draft", "google"],
+  },
+  {
+    id: "outlook",
+    name: "Microsoft Outlook & 365",
+    icon: "/plugins/outlook/icon.svg",
+    category: "communication",
+    description: "Search Outlook emails, summarize threads, and check calendar invites.",
+    iconName: "Mail",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "MS_GRAPH_TOKEN",
+        label: "Microsoft Graph Access Token",
+        placeholder: "EwB...",
+        type: "password",
+        required: true,
+        docUrl: "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps",
+      },
+    ],
+    preset: {
+      id: "outlook",
+      name: "Microsoft Outlook",
+      description: "Read emails and manage calendar appointments on Microsoft 365.",
+      command: "npx",
+      args: ["-y", "mcp-server-outlook"],
+      envKeys: ["MS_GRAPH_TOKEN"],
+    },
+    keywords: ["outlook", "microsoft", "office365", "email", "calendar", "exchange"],
+  },
+  {
+    id: "discord",
+    name: "Discord",
+    icon: "/plugins/discord/icon.svg",
+    category: "communication",
+    description: "Send channel messages, monitor server discussions, and post notifications.",
+    iconName: "MessageCircle",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "DISCORD_BOT_TOKEN",
+        label: "Discord Bot Token",
+        placeholder: "Bot token...",
+        type: "password",
+        required: true,
+        docUrl: "https://discord.com/developers/applications",
+      },
+    ],
+    preset: {
+      id: "discord",
+      name: "Discord",
+      description: "Send messages and monitor channels on Discord servers.",
+      command: "npx",
+      args: ["-y", "mcp-server-discord"],
+      envKeys: ["DISCORD_BOT_TOKEN"],
+    },
+    keywords: ["discord", "chat", "bot", "channel", "community", "messages"],
+  },
+  {
+    id: "telegram",
+    name: "Telegram",
+    icon: "/plugins/telegram/icon.svg",
+    category: "communication",
+    description: "Send alerts, message summaries, and notifications to Telegram chats.",
+    iconName: "Send",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TELEGRAM_BOT_TOKEN",
+        label: "Telegram Bot Token",
+        placeholder: "123456789:ABC...",
+        type: "password",
+        required: true,
+        helpText: "Obtained from @BotFather on Telegram.",
+      },
+    ],
+    preset: {
+      id: "telegram",
+      name: "Telegram",
+      description: "Send messages and updates to Telegram channels and bots.",
+      command: "npx",
+      args: ["-y", "mcp-server-telegram"],
+      envKeys: ["TELEGRAM_BOT_TOKEN"],
+    },
+    keywords: ["telegram", "bot", "messages", "chat", "notifications", "alerts"],
+  },
+  {
+    id: "ms-teams",
+    name: "Microsoft Teams",
+    icon: "/plugins/ms-teams/icon.svg",
+    category: "communication",
+    description: "Read team channel chats, view activity feeds, and send bot messages.",
+    iconName: "Users",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TEAMS_BOT_TOKEN",
+        label: "Microsoft Teams Bot Token",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "ms-teams",
+      name: "Microsoft Teams",
+      description: "Connect to Microsoft Teams channels and conversations.",
+      command: "npx",
+      args: ["-y", "mcp-server-teams"],
+      envKeys: ["TEAMS_BOT_TOKEN"],
+    },
+    keywords: ["teams", "microsoft", "chat", "enterprise", "channels", "calls"],
+  },
+  {
+    id: "twilio",
+    name: "Twilio SMS & WhatsApp",
+    icon: "/plugins/twilio/icon.svg",
+    category: "communication",
+    description: "Send SMS notifications and WhatsApp messages programmatically.",
+    iconName: "Phone",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "TWILIO_ACCOUNT_SID",
+        label: "Twilio Account SID",
+        placeholder: "AC...",
+        type: "password",
+        required: true,
+      },
+      {
+        key: "TWILIO_AUTH_TOKEN",
+        label: "Twilio Auth Token",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+      },
+    ],
+    preset: {
+      id: "twilio",
+      name: "Twilio SMS & WhatsApp",
+      description: "Send SMS alerts and messaging via Twilio API.",
+      command: "npx",
+      args: ["-y", "mcp-server-twilio"],
+      envKeys: ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN"],
+    },
+    keywords: ["twilio", "sms", "whatsapp", "text", "phone", "messages", "notifications"],
+  },
+
+  // ==========================================
+  // 5. SEARCH & RESEARCH (37–43)
+  // ==========================================
+  {
+    id: "exa",
+    name: "Exa (Metaphor) Neural Search",
+    icon: "/plugins/exa/icon.svg",
+    category: "search",
+    badge: "Official",
+    description: "Semantic neural search tailored for code, technical blogs, and deep research.",
+    longDescription:
+      "Uses meaning-based semantic vector search over the web to find deeply technical articles, repositories, and niche academic resources.",
+    iconName: "Search",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "EXA_API_KEY",
+        label: "Exa API Key",
+        placeholder: "API Key...",
+        type: "password",
+        required: true,
+        docUrl: "https://exa.ai",
+      },
+    ],
+    preset: {
+      id: "exa",
+      name: "Exa Neural Search",
+      description: "Semantic web search designed for AI agents and research.",
+      command: "npx",
+      args: ["-y", "exa-mcp-server"],
+      envKeys: ["EXA_API_KEY"],
+    },
+    keywords: ["exa", "metaphor", "neural search", "semantic", "research", "papers", "articles"],
+  },
+  {
+    id: "brave-search",
+    name: "Brave Search",
+    icon: "/plugins/brave-search/icon.svg",
+    category: "search",
+    badge: "Popular",
+    description: "Independent web search engine with zero tracking and local POI lookups.",
+    iconName: "Search",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "BRAVE_API_KEY",
+        label: "Brave Search API Key",
+        placeholder: "BSA...",
+        type: "password",
+        required: true,
+        docUrl: "https://brave.com/search/api/",
+      },
+    ],
+    preset: {
+      id: "brave-search",
+      name: "Brave Search",
+      description: "Web and local search via the Brave Search API.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search",
+      command: "npx",
+      args: ["-y", "@modelcontextprotocol/server-brave-search"],
+      envKeys: ["BRAVE_API_KEY"],
+    },
+    keywords: ["brave", "search", "privacy", "web", "lookup", "google alternative"],
+  },
+  {
+    id: "perplexity",
+    name: "Perplexity Research",
+    icon: "/plugins/perplexity/icon.svg",
+    category: "search",
+    description: "Multi-source synthesized web answers with structured citations.",
+    iconName: "Compass",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "PERPLEXITY_API_KEY",
+        label: "Perplexity API Key",
+        placeholder: "pplx-...",
+        type: "password",
+        required: true,
+        docUrl: "https://www.perplexity.ai/settings/api",
+      },
+    ],
+    preset: {
+      id: "perplexity",
+      name: "Perplexity Research",
+      description: "Synthesized AI research answers with multi-source citations.",
+      command: "npx",
+      args: ["-y", "mcp-server-perplexity"],
+      envKeys: ["PERPLEXITY_API_KEY"],
+    },
+    keywords: ["perplexity", "research", "citations", "answers", "summary", "web"],
+  },
+  {
+    id: "arxiv",
+    name: "ArXiv Academic Papers",
+    icon: "/plugins/arxiv/icon.svg",
+    category: "search",
+    description: "Search scientific papers, preprints, abstracts, and authors on ArXiv.",
+    iconName: "BookOpen",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "arxiv",
+      name: "ArXiv Scientific Papers",
+      description: "Search and read academic research papers from ArXiv.",
+      command: "npx",
+      args: ["-y", "mcp-server-arxiv"],
+    },
+    keywords: ["arxiv", "papers", "science", "academic", "research", "ai", "physics", "math"],
+  },
+  {
+    id: "wikipedia",
+    name: "Wikipedia Knowledge",
+    icon: "/plugins/wikipedia/icon.svg",
+    category: "search",
+    description: "Search and fetch verified encyclopedic articles and biographical context.",
+    iconName: "Globe",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "wikipedia",
+      name: "Wikipedia Knowledge",
+      description: "Fetch articles and summaries from Wikipedia.",
+      command: "npx",
+      args: ["-y", "mcp-server-wikipedia"],
+    },
+    keywords: ["wikipedia", "encyclopedia", "facts", "history", "knowledge", "reference"],
+  },
+  {
+    id: "apify",
+    name: "Apify Web Scrapers",
+    icon: "/plugins/apify/icon.svg",
+    category: "search",
+    description: "Run ready-made scrapers for e-commerce, Google Maps, Instagram, and more.",
+    iconName: "Layers",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "APIFY_TOKEN",
+        label: "Apify API Token",
+        placeholder: "apify_api_...",
+        type: "password",
+        required: true,
+        docUrl: "https://console.apify.com/account#/integrations",
+      },
+    ],
+    preset: {
+      id: "apify",
+      name: "Apify Scrapers",
+      description: "Execute web actors and scrapers via the Apify platform.",
+      command: "npx",
+      args: ["-y", "apify-mcp-server"],
+      envKeys: ["APIFY_TOKEN"],
+    },
+    keywords: ["apify", "scraper", "crawling", "ecommerce", "actors", "data extraction"],
+  },
+  {
+    id: "fetch",
+    name: "Fetch Web URLs",
+    icon: "/plugins/fetch/icon.svg",
+    category: "search",
+    badge: "Essential",
+    description: "Fast HTTP page reader converting raw web pages into clean text.",
+    iconName: "Globe",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "fetch",
+      name: "Fetch Web URLs",
+      description: "Fetch and extract clean text from public web URLs.",
+      homepageUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+      command: "uvx",
+      args: ["mcp-server-fetch"],
+    },
+    keywords: ["fetch", "url", "http", "curl", "webpage", "html", "reader"],
+  },
+
+  // ==========================================
+  // 6. MEDIA, DESIGN & UTILITIES (44–50)
+  // ==========================================
+  {
+    id: "figma",
+    name: "Figma",
+    icon: "/plugins/figma/icon.svg",
+    category: "media",
+    badge: "Popular",
+    description: "Inspect UI frames, extract component styles, typography, and color tokens.",
+    iconName: "Palette",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "FIGMA_PERSONAL_ACCESS_TOKEN",
+        label: "Figma Personal Access Token",
+        placeholder: "figd_...",
+        type: "password",
+        required: true,
+        docUrl: "https://www.figma.com/developers/api#access-tokens",
+      },
+    ],
+    preset: {
+      id: "figma",
+      name: "Figma",
+      description: "Inspect Figma design frames, components, and design tokens.",
+      command: "npx",
+      args: ["-y", "figma-mcp"],
+      envKeys: ["FIGMA_PERSONAL_ACCESS_TOKEN"],
+    },
+    keywords: ["figma", "design", "ui", "components", "tokens", "styles", "frames"],
+  },
+  {
+    id: "youtube-transcripts",
+    name: "YouTube Transcripts",
+    icon: "/plugins/youtube-transcripts/icon.svg",
+    category: "media",
+    description: "Extract complete video transcripts and subtitles for rapid summarization.",
+    iconName: "Video",
+    authType: "none",
+    authFields: [],
+    preset: {
+      id: "youtube-transcripts",
+      name: "YouTube Transcripts",
+      description: "Fetch video transcripts and subtitles from YouTube URLs.",
+      command: "npx",
+      args: ["-y", "youtube-transcript-mcp"],
+    },
+    keywords: ["youtube", "video", "transcripts", "subtitles", "summarize", "audio"],
+  },
+  {
+    id: "spotify",
+    name: "Spotify Player & Library",
+    icon: "/plugins/spotify/icon.svg",
+    category: "media",
+    description: "Control music playback, search track catalogs, and inspect playlists.",
+    iconName: "Music",
+    authType: "oauth",
+    authFields: [
+      {
+        key: "SPOTIFY_CLIENT_ID",
+        label: "Spotify Client ID (Optional)",
+        placeholder: "Leave blank to use Sythoria Default...",
+        type: "text",
+        required: false,
+        helpText:
+          "Optionally specify your own Spotify Developer Client ID (PKCE enabled with redirect http://127.0.0.1:8888/callback).",
+        docUrl: "https://developer.spotify.com/dashboard",
+      },
+    ],
+    preset: {
+      id: "spotify",
+      name: "Spotify",
+      description: "Control Spotify playback and search playlists.",
+      command: "npx",
+      args: ["-y", "spotify-mcp"],
+      envKeys: ["SPOTIFY_CLIENT_ID"],
+    },
+    keywords: ["spotify", "music", "songs", "playback", "playlist", "audio"],
+  },
+  {
+    id: "wolfram",
+    name: "Wolfram Alpha",
+    icon: "/plugins/wolfram/icon.svg",
+    category: "media",
+    badge: "Official",
+    description: "Computational knowledge engine for advanced math, physics, and science.",
+    iconName: "Cpu",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "WOLFRAM_APP_ID",
+        label: "Wolfram Alpha App ID",
+        placeholder: "App ID...",
+        type: "password",
+        required: true,
+        docUrl: "https://developer.wolframalpha.com/portal/myapps/",
+      },
+    ],
+    preset: {
+      id: "wolfram",
+      name: "Wolfram Alpha",
+      description: "Scientific calculations, mathematics, and unit conversions.",
+      command: "npx",
+      args: ["-y", "wolfram-mcp"],
+      envKeys: ["WOLFRAM_APP_ID"],
+    },
+    keywords: ["wolfram", "math", "physics", "science", "computation", "formulas", "units"],
+  },
+  {
+    id: "canva",
+    name: "Canva",
+    icon: "/plugins/canva/icon.svg",
+    category: "media",
+    description: "Browse social media templates, create design assets, and export graphics.",
+    iconName: "Image",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "CANVA_API_KEY",
+        label: "Canva API Key",
+        placeholder: "Token...",
+        type: "password",
+        required: true,
+        docUrl: "https://www.canva.com/developers/",
+      },
+    ],
+    preset: {
+      id: "canva",
+      name: "Canva",
+      description: "Access Canva templates and design assets.",
+      command: "npx",
+      args: ["-y", "canva-mcp"],
+      envKeys: ["CANVA_API_KEY"],
+    },
+    keywords: ["canva", "design", "templates", "graphics", "social media", "banners"],
+  },
+  {
+    id: "fireflies",
+    name: "Fireflies & Granola Meetings",
+    icon: "/plugins/fireflies/icon.svg",
+    category: "media",
+    description: "Search meeting transcripts, AI summaries, and action item logs.",
+    iconName: "Mic",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "FIREFLIES_API_KEY",
+        label: "Fireflies API Key",
+        placeholder: "API Key...",
+        type: "password",
+        required: true,
+        docUrl: "https://app.fireflies.ai/integrations/api",
+      },
+    ],
+    preset: {
+      id: "fireflies",
+      name: "Fireflies Meeting Transcripts",
+      description: "Search meeting recordings and action items from Fireflies.ai.",
+      command: "npx",
+      args: ["-y", "fireflies-mcp"],
+      envKeys: ["FIREFLIES_API_KEY"],
+    },
+    keywords: ["fireflies", "granola", "meetings", "transcripts", "zoom", "meet", "audio"],
+  },
+  {
+    id: "zapier",
+    name: "Zapier & Webhooks",
+    icon: "/plugins/zapier/icon.svg",
+    category: "media",
+    badge: "Official",
+    description: "Universal webhook bridge triggering actions in 5,000+ third-party apps.",
+    iconName: "Zap",
+    authType: "api_key",
+    authFields: [
+      {
+        key: "ZAPIER_NLA_API_KEY",
+        label: "Zapier NLA API Key",
+        placeholder: "sk_ak_...",
+        type: "password",
+        required: true,
+        docUrl: "https://nla.zapier.com/credentials/",
+      },
+    ],
+    preset: {
+      id: "zapier",
+      name: "Zapier & Webhooks",
+      description: "Trigger workflows and actions across 5,000+ apps via Zapier.",
+      command: "npx",
+      args: ["-y", "zapier-mcp"],
+      envKeys: ["ZAPIER_NLA_API_KEY"],
+    },
+    keywords: ["zapier", "make", "webhooks", "automation", "integrations", "workflows"],
+  },
+];
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function matchesPresetArgument(template: string, value: string): boolean {
+  const placeholderPattern = /<[^>]+>/g;
+  if (!placeholderPattern.test(template)) return template === value;
+
+  placeholderPattern.lastIndex = 0;
+  let pattern = "^";
+  let cursor = 0;
+  for (const match of template.matchAll(placeholderPattern)) {
+    pattern += escapeRegExp(template.slice(cursor, match.index));
+    pattern += "[\\s\\S]*";
+    cursor = (match.index ?? 0) + match[0].length;
+  }
+  pattern += `${escapeRegExp(template.slice(cursor))}$`;
+  return new RegExp(pattern).test(value);
+}
+
+/**
+ * Returns the bundled plugin represented by a config only when its executable
+ * identity still matches the catalog preset. This lets legacy catalog installs
+ * become verified without trusting a custom server that merely reuses a name.
+ */
+export function verifiedCatalogPluginForConfig(config: McpServerConfig): PluginItem | undefined {
+  const candidates = config.catalogPluginId
+    ? PLUGINS_CATALOG.filter((plugin) => plugin.id === config.catalogPluginId)
+    : PLUGINS_CATALOG.filter(
+        (plugin) =>
+          plugin.name.toLowerCase() === config.name.toLowerCase() ||
+          plugin.preset.name.toLowerCase() === config.name.toLowerCase(),
+      );
+
+  return candidates.find((plugin) => {
+    const preset = plugin.preset;
+    const args = config.args ?? [];
+    return (
+      config.transport === "stdio" &&
+      config.name.toLowerCase() === preset.name.toLowerCase() &&
+      config.command === preset.command &&
+      args.length === preset.args.length &&
+      preset.args.every((argument, index) => matchesPresetArgument(argument, args[index] ?? ""))
+    );
+  });
+}

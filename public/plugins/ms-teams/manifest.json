@@ -1,0 +1,26 @@
+{
+  "id": "ms-teams",
+  "name": "Microsoft Teams",
+  "category": "communication",
+  "description": "Read team channel chats, view activity feeds, and send bot messages.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "TEAMS_BOT_TOKEN",
+      "label": "Microsoft Teams Bot Token",
+      "placeholder": "Token...",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "ms-teams",
+    "name": "Microsoft Teams",
+    "description": "Connect to Microsoft Teams channels and conversations.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-teams"],
+    "envKeys": ["TEAMS_BOT_TOKEN"]
+  },
+  "keywords": ["teams", "microsoft", "chat", "enterprise", "channels", "calls"]
+}

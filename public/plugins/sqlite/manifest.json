@@ -1,0 +1,30 @@
+{
+  "id": "sqlite",
+  "name": "SQLite Database Inspector",
+  "category": "developer",
+  "description": "Query and inspect local SQLite databases with automated schema analysis.",
+  "longDescription": "Allows the assistant to safely inspect local SQLite database files, run read-only analytical queries, and examine indexes and table schemas.",
+  "icon": "./icon.svg",
+  "badge": "Essential",
+  "authType": "none",
+  "authFields": [
+    {
+      "key": "SQLITE_DB_PATH",
+      "label": "SQLite Database File Path",
+      "placeholder": "C:/path/to/database.db",
+      "type": "text",
+      "required": true,
+      "helpText": "Absolute path to your .sqlite or .db file."
+    }
+  ],
+  "preset": {
+    "id": "sqlite",
+    "name": "SQLite Database Inspector",
+    "description": "Inspect schema and query tables in a local SQLite file.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+    "command": "uvx",
+    "args": ["mcp-server-sqlite", "--db-path", "<SQLITE_DB_PATH>"],
+    "envKeys": ["SQLITE_DB_PATH"]
+  },
+  "keywords": ["sqlite", "sql", "db", "database", "local", "query", "tables"]
+}

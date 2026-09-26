@@ -1,0 +1,17 @@
+{
+  "id": "youtube-transcripts",
+  "name": "YouTube Transcripts",
+  "category": "media",
+  "description": "Extract complete video transcripts and subtitles for rapid summarization.",
+  "icon": "./icon.svg",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "youtube-transcripts",
+    "name": "YouTube Transcripts",
+    "description": "Fetch video transcripts and subtitles from YouTube URLs.",
+    "command": "npx",
+    "args": ["-y", "youtube-transcript-mcp"]
+  },
+  "keywords": ["youtube", "video", "transcripts", "subtitles", "summarize", "audio"]
+}

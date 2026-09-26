@@ -1,0 +1,31 @@
+{
+  "id": "sentry",
+  "name": "Sentry Error Monitoring",
+  "category": "developer",
+  "description": "Pull stack traces, triage unhandled exceptions, and link errors to code.",
+  "longDescription": "Retrieves real-time application crashes and stack traces from Sentry so the AI can diagnose bugs and suggest immediate code fixes.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "SENTRY_AUTH_TOKEN",
+      "label": "Sentry User Auth Token",
+      "placeholder": "sntrys_...",
+      "type": "password",
+      "required": true,
+      "helpText": "Requires project:read and issue:read scopes.",
+      "docUrl": "https://sentry.io/settings/account/api/auth-tokens/"
+    }
+  ],
+  "preset": {
+    "id": "sentry",
+    "name": "Sentry",
+    "description": "Analyze error logs, trace exceptions, and debug crashes with Sentry.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sentry"],
+    "envKeys": ["SENTRY_AUTH_TOKEN"]
+  },
+  "keywords": ["sentry", "errors", "exceptions", "stacktrace", "bugs", "monitoring", "crash"]
+}

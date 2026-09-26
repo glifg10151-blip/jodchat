@@ -1,0 +1,34 @@
+{
+  "id": "spotify",
+  "name": "Spotify Player & Library",
+  "category": "media",
+  "description": "Control music playback, search track catalogs, and inspect playlists.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "SPOTIFY_CLIENT_ID",
+      "label": "Spotify Client ID",
+      "placeholder": "Client ID...",
+      "type": "text",
+      "required": true,
+      "docUrl": "https://developer.spotify.com/dashboard"
+    },
+    {
+      "key": "SPOTIFY_CLIENT_SECRET",
+      "label": "Spotify Client Secret",
+      "placeholder": "Client Secret...",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "spotify",
+    "name": "Spotify",
+    "description": "Control Spotify playback and search playlists.",
+    "command": "npx",
+    "args": ["-y", "spotify-mcp"],
+    "envKeys": ["SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"]
+  },
+  "keywords": ["spotify", "music", "songs", "playback", "playlist", "audio"]
+}

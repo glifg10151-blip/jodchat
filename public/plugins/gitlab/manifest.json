@@ -1,0 +1,37 @@
+{
+  "id": "gitlab",
+  "name": "GitLab",
+  "category": "developer",
+  "description": "Manage merge requests, repositories, issues, and pipelines on GitLab.",
+  "longDescription": "Deep integration for GitLab.com and self-hosted GitLab instances to review merge requests, search code, and monitor CI/CD pipelines.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "GITLAB_PERSONAL_ACCESS_TOKEN",
+      "label": "GitLab Personal Access Token",
+      "placeholder": "glpat-...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://gitlab.com/-/user_settings/personal_access_tokens"
+    },
+    {
+      "key": "GITLAB_API_URL",
+      "label": "GitLab Instance URL (Optional)",
+      "placeholder": "https://gitlab.com/api/v4",
+      "type": "text",
+      "helpText": "Defaults to gitlab.com. Set this if using a self-hosted instance."
+    }
+  ],
+  "preset": {
+    "id": "gitlab",
+    "name": "GitLab",
+    "description": "Interact with GitLab projects, merge requests, issues, and CI pipelines.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+    "envKeys": ["GITLAB_PERSONAL_ACCESS_TOKEN"]
+  },
+  "keywords": ["gitlab", "git", "mr", "merge request", "ci", "pipelines", "repo"]
+}

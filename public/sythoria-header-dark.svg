@@ -1,0 +1,24 @@
+<svg width="1080" height="272" viewBox="0 0 1080 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="icon-bg" x1="24" y1="12" x2="104" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D1938" />
+      <stop offset="1" stop-color="#0F1023" />
+    </linearGradient>
+  </defs>
+  <text
+    x="255"
+    y="182"
+    fill="#F5F5F5"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="120"
+    font-weight="400"
+    letter-spacing="-3"
+  >Sythoria</text>
+  <g transform="translate(690 68) scale(1.0625)">
+    <rect width="128" height="128" rx="32" fill="url(#icon-bg)" />
+    <path d="M36 39L64 22L92 39C98 42.5 101 47.5 101 54V83C101 89.5 98 94.5 92 98L64 115L36 98C30 94.5 27 89.5 27 83V54C27 47.5 30 42.5 36 39Z" stroke="#30218F" stroke-width="3" />
+    <path d="M31 35L59 18L87 35C93 38.5 96 43.5 96 50V79C96 85.5 93 90.5 87 94L59 111L31 94C25 90.5 22 85.5 22 79V50C22 43.5 25 38.5 31 35Z" stroke="#4935C4" stroke-width="3" />
+    <path d="M27 32L55 15L83 32C89 35.5 92 40.5 92 47V76C92 82.5 89 87.5 83 91L55 108L27 91C21 87.5 18 82.5 18 76V47C18 40.5 21 35.5 27 32Z" fill="#26213F" stroke="#765DFF" stroke-width="4" />
+    <path d="M55 31L69 58.5L55 86L41 58.5L55 31Z" fill="#8D7DE0" />
+  </g>
+</svg>

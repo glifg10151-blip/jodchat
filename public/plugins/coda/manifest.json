@@ -1,0 +1,27 @@
+{
+  "id": "coda",
+  "name": "Coda",
+  "category": "productivity",
+  "description": "Read interactive docs, query tables, and append row data in Coda.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "CODA_API_KEY",
+      "label": "Coda API Key",
+      "placeholder": "API Token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://coda.io/account"
+    }
+  ],
+  "preset": {
+    "id": "coda",
+    "name": "Coda",
+    "description": "Interact with Coda docs, tables, and formulas.",
+    "command": "npx",
+    "args": ["-y", "coda-mcp"],
+    "envKeys": ["CODA_API_KEY"]
+  },
+  "keywords": ["coda", "docs", "interactive", "tables", "formulas", "workspace"]
+}

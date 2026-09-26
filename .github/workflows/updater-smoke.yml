@@ -1,0 +1,32 @@
+name: Published updater smoke check
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Expected version (for example, v0.4.1)
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify-manifest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Setup Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+
+      - name: Verify latest.json
+        env:
+          EXPECTED_VERSION: ${{ github.event.release.tag_name || inputs.version }}
+          EXPECTED_PLATFORM_PREFIXES: windows-,linux-,darwin-
+        run: node scripts/verify-updater-manifest.mjs

@@ -1,0 +1,27 @@
+{
+  "id": "outlook",
+  "name": "Microsoft Outlook & 365",
+  "category": "communication",
+  "description": "Search Outlook emails, summarize threads, and check calendar invites.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "MS_GRAPH_TOKEN",
+      "label": "Microsoft Graph Access Token",
+      "placeholder": "EwB...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps"
+    }
+  ],
+  "preset": {
+    "id": "outlook",
+    "name": "Microsoft Outlook",
+    "description": "Read emails and manage calendar appointments on Microsoft 365.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-outlook"],
+    "envKeys": ["MS_GRAPH_TOKEN"]
+  },
+  "keywords": ["outlook", "microsoft", "office365", "email", "calendar", "exchange"]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "canva",
+  "name": "Canva",
+  "category": "media",
+  "description": "Browse social media templates, create design assets, and export graphics.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "CANVA_API_KEY",
+      "label": "Canva API Key",
+      "placeholder": "Token...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://www.canva.com/developers/"
+    }
+  ],
+  "preset": {
+    "id": "canva",
+    "name": "Canva",
+    "description": "Access Canva templates and design assets.",
+    "command": "npx",
+    "args": ["-y", "canva-mcp"],
+    "envKeys": ["CANVA_API_KEY"]
+  },
+  "keywords": ["canva", "design", "templates", "graphics", "social media", "banners"]
+}

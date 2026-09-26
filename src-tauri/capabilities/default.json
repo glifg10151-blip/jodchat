@@ -1,0 +1,47 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "permissions": [
+    "core:app:allow-version",
+    {
+      "identifier": "core:event:allow-listen",
+      "allow": [
+        { "event": "chat-stream-chunk" },
+        { "event": "chat-stream-done" },
+        { "event": "tauri://drag-enter" },
+        { "event": "tauri://drag-over" },
+        { "event": "tauri://drag-leave" },
+        { "event": "sythoria://drag-drop-tokens" },
+        { "event": "sythoria://spotlight-shown" },
+        { "event": "sythoria://appshot-requested" },
+        { "event": "sythoria://macos-fullscreen-changed" },
+        { "event": "whisper-download-progress" },
+        { "event": "menu-new-conversation" },
+        { "event": "menu-create-project" },
+        { "event": "menu-command-palette" },
+        { "event": "menu-check-updates" },
+        { "event": "menu-zoom-in" },
+        { "event": "menu-zoom-out" },
+        { "event": "menu-zoom-reset" }
+      ]
+    },
+    "core:event:allow-unlisten",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [{ "url": "https://*" }, { "url": "http://*" }, { "url": "mailto:*" }]
+    },
+    "log:default",
+    "dialog:allow-open",
+    "process:allow-restart",
+    "updater:allow-check",
+    "updater:allow-download-and-install",
+    "core:resources:allow-close",
+    "core:window:allow-set-always-on-top",
+    "core:window:allow-start-dragging",
+    "core:window:allow-close",
+    "core:window:allow-minimize",
+    "core:window:allow-toggle-maximize"
+  ]
+}

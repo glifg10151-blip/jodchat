@@ -1,0 +1,39 @@
+{
+  "id": "slack",
+  "name": "Slack",
+  "category": "featured",
+  "description": "Read channel messages, summarize discussions, and post replies.",
+  "longDescription": "Allows the AI to search conversation history in public and private channels, extract key takeaways from team threads, and compose draft messages.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "SLACK_BOT_TOKEN",
+      "label": "Slack Bot User OAuth Token",
+      "placeholder": "xoxb-...",
+      "type": "password",
+      "required": true,
+      "helpText": "Requires channels:history, channels:read, and chat:write scopes.",
+      "docUrl": "https://api.slack.com/apps"
+    },
+    {
+      "key": "SLACK_TEAM_ID",
+      "label": "Slack Team / Workspace ID",
+      "placeholder": "T0123456789",
+      "type": "text",
+      "required": true,
+      "helpText": "Found in your Slack workspace URL or profile details."
+    }
+  ],
+  "preset": {
+    "id": "slack",
+    "name": "Slack",
+    "description": "Channel search, thread summaries, and message sending via Slack API.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/slack",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-slack"],
+    "envKeys": ["SLACK_BOT_TOKEN", "SLACK_TEAM_ID"]
+  },
+  "keywords": ["slack", "chat", "messages", "team", "communication", "channel", "discussion"]
+}

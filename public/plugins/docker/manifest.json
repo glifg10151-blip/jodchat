@@ -1,0 +1,20 @@
+{
+  "id": "docker",
+  "name": "Docker Container Manager",
+  "category": "developer",
+  "description": "Inspect local containers, view runtime logs, and manage Docker services.",
+  "longDescription": "Allows the assistant to list running containers, fetch live container logs, inspect images, and check service health on your local Docker daemon.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "docker",
+    "name": "Docker Container Manager",
+    "description": "Manage local Docker containers, images, volumes, and logs.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers",
+    "command": "npx",
+    "args": ["-y", "mcp-server-docker"]
+  },
+  "keywords": ["docker", "containers", "devops", "logs", "compose", "images", "daemon"]
+}

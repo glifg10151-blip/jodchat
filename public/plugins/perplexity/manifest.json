@@ -1,0 +1,27 @@
+{
+  "id": "perplexity",
+  "name": "Perplexity Research",
+  "category": "search",
+  "description": "Multi-source synthesized web answers with structured citations.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "PERPLEXITY_API_KEY",
+      "label": "Perplexity API Key",
+      "placeholder": "pplx-...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://www.perplexity.ai/settings/api"
+    }
+  ],
+  "preset": {
+    "id": "perplexity",
+    "name": "Perplexity Research",
+    "description": "Synthesized AI research answers with multi-source citations.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-perplexity"],
+    "envKeys": ["PERPLEXITY_API_KEY"]
+  },
+  "keywords": ["perplexity", "research", "citations", "answers", "summary", "web"]
+}

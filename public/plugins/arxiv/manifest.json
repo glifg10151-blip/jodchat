@@ -1,0 +1,17 @@
+{
+  "id": "arxiv",
+  "name": "ArXiv Academic Papers",
+  "category": "search",
+  "description": "Search scientific papers, preprints, abstracts, and authors on ArXiv.",
+  "icon": "./icon.svg",
+  "authType": "none",
+  "authFields": [],
+  "preset": {
+    "id": "arxiv",
+    "name": "ArXiv Scientific Papers",
+    "description": "Search and read academic research papers from ArXiv.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-arxiv"]
+  },
+  "keywords": ["arxiv", "papers", "science", "academic", "research", "ai", "physics", "math"]
+}

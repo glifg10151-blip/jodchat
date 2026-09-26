@@ -1,0 +1,26 @@
+{
+  "id": "redis",
+  "name": "Redis",
+  "category": "developer",
+  "description": "Inspect cached keys, view TTLs, and test key-value structures.",
+  "icon": "./icon.svg",
+  "authType": "connection_string",
+  "authFields": [
+    {
+      "key": "REDIS_URL",
+      "label": "Redis Connection URL",
+      "placeholder": "redis://localhost:6379",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "preset": {
+    "id": "redis",
+    "name": "Redis Cache & DB",
+    "description": "Connect to Redis instances to query keys and data types.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-redis"],
+    "envKeys": ["REDIS_URL"]
+  },
+  "keywords": ["redis", "cache", "key-value", "memory", "ttl", "pubsub"]
+}

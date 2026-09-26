@@ -1,0 +1,27 @@
+{
+  "id": "hubspot",
+  "name": "HubSpot CRM",
+  "category": "productivity",
+  "description": "Search contact records, log call notes, and view deals in your sales pipeline.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "HUBSPOT_ACCESS_TOKEN",
+      "label": "HubSpot Private App Access Token",
+      "placeholder": "pat-...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://app.hubspot.com/settings/integrations/private-apps"
+    }
+  ],
+  "preset": {
+    "id": "hubspot",
+    "name": "HubSpot CRM",
+    "description": "Manage CRM contacts, companies, deals, and sales activities.",
+    "command": "npx",
+    "args": ["-y", "hubspot-mcp"],
+    "envKeys": ["HUBSPOT_ACCESS_TOKEN"]
+  },
+  "keywords": ["hubspot", "crm", "sales", "deals", "contacts", "pipeline", "leads"]
+}

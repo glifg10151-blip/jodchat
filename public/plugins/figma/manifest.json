@@ -1,0 +1,28 @@
+{
+  "id": "figma",
+  "name": "Figma",
+  "category": "media",
+  "description": "Inspect UI frames, extract component styles, typography, and color tokens.",
+  "icon": "./icon.svg",
+  "badge": "Popular",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "FIGMA_PERSONAL_ACCESS_TOKEN",
+      "label": "Figma Personal Access Token",
+      "placeholder": "figd_...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://www.figma.com/developers/api#access-tokens"
+    }
+  ],
+  "preset": {
+    "id": "figma",
+    "name": "Figma",
+    "description": "Inspect Figma design frames, components, and design tokens.",
+    "command": "npx",
+    "args": ["-y", "figma-mcp"],
+    "envKeys": ["FIGMA_PERSONAL_ACCESS_TOKEN"]
+  },
+  "keywords": ["figma", "design", "ui", "components", "tokens", "styles", "frames"]
+}

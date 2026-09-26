@@ -1,0 +1,29 @@
+{
+  "id": "filesystem",
+  "name": "Local Filesystem",
+  "category": "developer",
+  "description": "Read, write, search, and inspect files and folders on your computer.",
+  "icon": "./icon.svg",
+  "badge": "Essential",
+  "authType": "none",
+  "authFields": [
+    {
+      "key": "ALLOWED_DIR",
+      "label": "Allowed Root Directory",
+      "placeholder": "C:/Users/YourName/Projects",
+      "type": "text",
+      "required": true,
+      "helpText": "Directory path the assistant is permitted to access."
+    }
+  ],
+  "preset": {
+    "id": "filesystem",
+    "name": "Local Filesystem",
+    "description": "Direct local file access with directory sandboxing.",
+    "homepageUrl": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "<ALLOWED_DIR>"],
+    "envKeys": ["ALLOWED_DIR"]
+  },
+  "keywords": ["filesystem", "files", "local", "directory", "read", "write", "folders"]
+}

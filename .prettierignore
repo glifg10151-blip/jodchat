@@ -1,0 +1,7 @@
+dist
+src-tauri
+node_modules
+.opencode
+*.min.js
+*.min.css
+package-lock.json

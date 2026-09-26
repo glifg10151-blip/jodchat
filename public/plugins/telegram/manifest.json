@@ -1,0 +1,27 @@
+{
+  "id": "telegram",
+  "name": "Telegram",
+  "category": "communication",
+  "description": "Send alerts, message summaries, and notifications to Telegram chats.",
+  "icon": "./icon.svg",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "TELEGRAM_BOT_TOKEN",
+      "label": "Telegram Bot Token",
+      "placeholder": "123456789:ABC...",
+      "type": "password",
+      "required": true,
+      "helpText": "Obtained from @BotFather on Telegram."
+    }
+  ],
+  "preset": {
+    "id": "telegram",
+    "name": "Telegram",
+    "description": "Send messages and updates to Telegram channels and bots.",
+    "command": "npx",
+    "args": ["-y", "mcp-server-telegram"],
+    "envKeys": ["TELEGRAM_BOT_TOKEN"]
+  },
+  "keywords": ["telegram", "bot", "messages", "chat", "notifications", "alerts"]
+}

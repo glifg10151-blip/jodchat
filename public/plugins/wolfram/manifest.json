@@ -1,0 +1,28 @@
+{
+  "id": "wolfram",
+  "name": "Wolfram Alpha",
+  "category": "media",
+  "description": "Computational knowledge engine for advanced math, physics, and science.",
+  "icon": "./icon.svg",
+  "badge": "Official",
+  "authType": "api_key",
+  "authFields": [
+    {
+      "key": "WOLFRAM_APP_ID",
+      "label": "Wolfram Alpha App ID",
+      "placeholder": "App ID...",
+      "type": "password",
+      "required": true,
+      "docUrl": "https://developer.wolframalpha.com/portal/myapps/"
+    }
+  ],
+  "preset": {
+    "id": "wolfram",
+    "name": "Wolfram Alpha",
+    "description": "Scientific calculations, mathematics, and unit conversions.",
+    "command": "npx",
+    "args": ["-y", "wolfram-mcp"],
+    "envKeys": ["WOLFRAM_APP_ID"]
+  },
+  "keywords": ["wolfram", "math", "physics", "science", "computation", "formulas", "units"]
+}
