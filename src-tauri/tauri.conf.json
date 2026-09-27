@@ -61,7 +61,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDhBMEU2MzU4OEU0ODBGNTMKUldSVEQwaU9XR01PaXNCbSt2WVFMbU9uR2IzVHdueU12bU1KOGIvTWFrNFUrMm00ODJ3TTNORVgK",
       "endpoints": [
-        "https://github.com/sythoria/sythoria-desktop/releases/latest/download/latest.json"
+        "https://github.com/glifg10151-blip/jodchat/releases/latest/download/latest.json"
       ],
       "windows": {
         "installMode": "passive"

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO="sythoria/sythoria-desktop"
+REPO="glifg10151-blip/jodchat"
 
 echo "Fetching release information from GitHub..."
 RELEASE_JSON=$(curl -s "https://api.github.com/repos/$REPO/releases/latest")

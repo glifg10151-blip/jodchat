@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { validateUpdaterManifest } from "./verify-updater-manifest.mjs";
 
 const artifact = (platform: string) => ({
-  url: `https://github.com/sythoria/sythoria-desktop/releases/download/v0.4.1/${platform}.zip`,
+  url: `https://github.com/glifg10151-blip/jodchat/releases/download/v0.4.1/${platform}.zip`,
   signature: `signature-${platform}`,
 });
 

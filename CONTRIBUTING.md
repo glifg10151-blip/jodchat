@@ -68,8 +68,8 @@ Before you begin, ensure you have the following installed on your development ma
 1. **Fork and Clone the Repository**
 
    ```bash
-   git clone https://github.com/YOUR-USERNAME/sythoria-desktop.git
-   cd sythoria-desktop
+   git clone https://github.com/YOUR-USERNAME/jodchat.git
+   cd jodchat
    ```
 
 2. **Install Dependencies**

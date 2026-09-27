@@ -81,7 +81,7 @@ Tauri verifies the `.sig` content before installing. Native updater signing does
 The updater endpoint is:
 
 ```text
-https://github.com/sythoria/sythoria-desktop/releases/latest/download/latest.json
+https://github.com/glifg10151-blip/jodchat/releases/latest/download/latest.json
 ```
 
 `releases/latest` excludes drafts, so users cannot discover an update until the release is published.
@@ -99,7 +99,7 @@ You need two updater-enabled versions. The first migration release must be insta
 Before testing the app, verify the published metadata is reachable and complete:
 
 ```sh
-curl --fail --location https://github.com/sythoria/sythoria-desktop/releases/latest/download/latest.json
+curl --fail --location https://github.com/glifg10151-blip/jodchat/releases/latest/download/latest.json
 ```
 
 The JSON must include the new semantic version and a platform entry with both a download URL and signature for the platform under test.

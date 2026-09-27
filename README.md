@@ -6,10 +6,10 @@
 </picture>
 
 <p>
-  <a href="https://github.com/sythoria/sythoria-desktop/releases/latest"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/release/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist" /><img alt="Latest release" src="https://www.shieldcn.dev/github/release/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist" /></picture></a>
+  <a href="https://github.com/glifg10151-blip/jodchat/releases/latest"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/release/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist" /><img alt="Latest release" src="https://www.shieldcn.dev/github/release/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist" /></picture></a>
   <a href="#installation"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/platforms-Windows_%C2%B7_macOS_%C2%B7_Linux.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=ri:ComputerLine" /><img alt="Supported platforms: Windows, macOS, and Linux" src="https://www.shieldcn.dev/badge/platforms-Windows_%C2%B7_macOS_%C2%B7_Linux.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=ri:ComputerLine" /></picture></a>
   <a href="./src/utils/i18n/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/interface-6_languages.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=googletranslate" /><img alt="Six interface languages" src="https://www.shieldcn.dev/badge/interface-6_languages.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=googletranslate" /></picture></a>
-  <a href="https://github.com/sythoria/sythoria-desktop/stargazers"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/stars/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=github" /><img alt="GitHub stars" src="https://www.shieldcn.dev/github/stars/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=github" /></picture></a>
+  <a href="https://github.com/glifg10151-blip/jodchat/stargazers"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/stars/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=github" /><img alt="GitHub stars" src="https://www.shieldcn.dev/github/stars/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=github" /></picture></a>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
   <a href="#architecture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/backend-Rust.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=rust" /><img alt="Rust backend" src="https://www.shieldcn.dev/badge/backend-Rust.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=rust" /></picture></a>
   <a href="#architecture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/React-19.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=react" /><img alt="React 19" src="https://www.shieldcn.dev/badge/React-19.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=react" /></picture></a>
   <a href="#architecture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/language-TypeScript.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=typescript" /><img alt="TypeScript" src="https://www.shieldcn.dev/badge/language-TypeScript.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=typescript" /></picture></a>
-  <a href="./LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist" /><img alt="MIT license" src="https://www.shieldcn.dev/github/license/sythoria/sythoria-desktop.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist" /></picture></a>
+  <a href="./LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist" /><img alt="MIT license" src="https://www.shieldcn.dev/github/license/glifg10151-blip/jodchat.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist" /></picture></a>
   <a href="#security-and-privacy"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/storage-encrypted_locally.svg?variant=outline&amp;size=sm&amp;mode=dark&amp;font=geist&amp;logo=ri:Lock2Line" /><img alt="Encrypted local storage" src="https://www.shieldcn.dev/badge/storage-encrypted_locally.svg?variant=outline&amp;size=sm&amp;mode=light&amp;font=geist&amp;logo=ri:Lock2Line" /></picture></a>
 </p>
 
@@ -30,7 +30,7 @@
 </p>
 
 <p>
-  <a href="https://github.com/sythoria/sythoria-desktop/releases/latest">Download</a> ·
+  <a href="https://github.com/glifg10151-blip/jodchat/releases/latest">Download</a> ·
   <a href="#installation">Install</a> ·
   <a href="#features">Features</a> ·
   <a href="#supported-connections">Connections</a> ·
@@ -90,10 +90,10 @@ Sythoria operates within the following boundaries:
 Use the universal installer script for Debian, Ubuntu, Fedora, Arch, and other Linux distributions:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/sythoria/sythoria-desktop/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/glifg10151-blip/jodchat/main/install.sh | bash
 ```
 
-For **Windows** and **macOS**, download the latest installer from the [Releases page](https://github.com/sythoria/sythoria-desktop/releases/latest).
+For **Windows** and **macOS**, download the latest installer from the [Releases page](https://github.com/glifg10151-blip/jodchat/releases/latest).
 
 ## Getting Started
 
@@ -109,8 +109,8 @@ For **Windows** and **macOS**, download the latest installer from the [Releases 
 #### Run the Application
 
 ```bash
-git clone https://github.com/sythoria/sythoria-desktop.git
-cd sythoria-desktop
+git clone https://github.com/glifg10151-blip/jodchat.git
+cd jodchat
 npm install
 npm run tauri dev
 ```

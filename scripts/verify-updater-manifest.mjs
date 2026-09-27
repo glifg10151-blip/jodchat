@@ -1,4 +1,4 @@
-const DEFAULT_MANIFEST_URL = "https://github.com/sythoria/sythoria-desktop/releases/latest/download/latest.json";
+const DEFAULT_MANIFEST_URL = "https://github.com/glifg10151-blip/jodchat/releases/latest/download/latest.json";
 
 export function validateUpdaterManifest(manifest, expectedVersion, expectedPlatformPrefixes) {
   if (!manifest || typeof manifest !== "object") throw new Error("Updater manifest must be a JSON object");
